@@ -30,12 +30,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Script_Banco(Projeto Final).sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Script_Banco(Projeto Final).sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/banco/Script_Banco(Projeto Final).sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="293">
               <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="133" selection-end-column="30" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="conexao.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/utils/conexao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,6 +85,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Competencias.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Debitos.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/DebitosControles.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/utils/conexao.java" />
       </list>
     </option>
   </component>
@@ -217,7 +230,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
+              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -879,15 +892,15 @@
       <option name="presentableId" value="Default" />
       <updated>1475116409757</updated>
       <workItem from="1475116414644" duration="4366000" />
-      <workItem from="1475194175037" duration="3864000" />
+      <workItem from="1475194175037" duration="5099000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8230000" />
+    <option name="totallyTimeSpent" value="9465000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1251,6 +1264,16 @@
         <state relative-caret-position="293">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="133" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/utils/conexao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="21" column="47" selection-start-line="21" selection-start-column="47" selection-end-line="21" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

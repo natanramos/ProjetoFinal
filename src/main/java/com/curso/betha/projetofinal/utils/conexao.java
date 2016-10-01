@@ -3,11 +3,13 @@ package com.curso.betha.projetofinal.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by NatanRamos on 30/09/2016.
  */
-public class conexao {
+public class Conexao {
 
     public Connection getConnection() {
 
@@ -17,11 +19,11 @@ public class conexao {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/postgres",
-                    "postgres", "th123!@#");
+                    "postgres", "postgres");
         } catch(ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch(SQLException e) {
-            System.out.println(e.getMessage());
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
 
         return conn;

@@ -1,6 +1,9 @@
 package com.curso.betha.projetofinal.model;
 
+import com.curso.betha.projetofinal.dao.UsuariosDAO;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by NatanRamos on 29/09/2016.
@@ -60,5 +63,29 @@ public class Usuarios {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void salvar() throws Exception{
+        if(this.getId() == null) {
+            UsuariosDAO.salvar(this);
+        } else {
+            UsuariosDAO.atualizar(this);
+        }
+    }
+
+    public void excluir() {
+        UsuariosDAO.excluir(this.getId());
+    }
+
+    public static Usuarios getUsuario(Long codigo) {
+        return UsuariosDAO.getUsuario(codigo);
+    }
+
+    public static List<Usuarios> getUsuarios() {
+        return UsuariosDAO.getUsuarios();
+    }
+
+    public Long realizarLogin(String login, String senha){
+        return UsuariosDAO.realizarLogin(login, senha);
     }
 }

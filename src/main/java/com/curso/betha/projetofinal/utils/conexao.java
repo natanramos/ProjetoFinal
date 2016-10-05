@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  */
 public class Conexao {
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
 
         Connection conn = null;
 

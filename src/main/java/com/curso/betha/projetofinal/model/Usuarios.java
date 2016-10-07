@@ -1,14 +1,17 @@
 package com.curso.betha.projetofinal.model;
 
 import com.curso.betha.projetofinal.dao.UsuariosDAO;
+import com.curso.betha.projetofinal.utils.Parseable;
+import com.curso.betha.projetofinal.utils.Utils;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by NatanRamos on 29/09/2016.
  */
-public class Usuarios {
+public class Usuarios implements Parseable {
 
     private Long id;
     private String nome;
@@ -65,7 +68,22 @@ public class Usuarios {
         this.senha = senha;
     }
 
-    public void salvar() throws Exception{
+    @Override
+    public String toString() {
+        return String.format("{\"id\":\"%s\",\"nome\":\"%s\",\"dataCadastro\":\"%s\",\"email\":\"%s\",\"login\":\"%s\",\"senha\":\"%s\"}", this.id, this.nome, this.dataCadastro, this.email, this.login, this.senha);
+    }
+
+    @Override
+    public void parse(Map<String, String> dados) {
+        this.id = dados.get("id") == null || dados.get("id").isEmpty() ? null : Long.parseLong(dados.get("id"));
+        this.nome = dados.get("nome");
+        this.dataCadastro = Utils.parseDate(dados.get("dataCadastro"));
+        this.email = dados.get("email");
+        this.login = dados.get("login");
+        this.senha = dados.get("senha");
+    }
+
+    /*public void salvar() throws Exception{
         if(this.getId() == null) {
             UsuariosDAO.salvar(this);
         } else {
@@ -87,5 +105,5 @@ public class Usuarios {
 
     public Long realizarLogin(String login, String senha){
         return UsuariosDAO.realizarLogin(login, senha);
-    }
+    }*/
 }

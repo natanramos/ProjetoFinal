@@ -17,20 +17,25 @@ import java.util.logging.Logger;
  */
 public class UsuariosDAO {
 
-    public static void salvar(Usuarios usuario) {
+    public Usuarios salvar(Usuarios usuario) {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
+        Long id = this.getNovoCodUsuario();
         try {
-            String sql = "insert into usuarios values(?,?,?,?,?)";
+            String sql = "insert into public.usuarios values(?,?,?,?,?,?)";
             pstm = conn.prepareStatement(sql);
 
-            pstm.setString(1, usuario.getNome());
-            pstm.setDate(2, new java.sql.Date(new java.util.Date().getTime()));
-            pstm.setString(3, usuario.getEmail());
-            pstm.setString(4, usuario.getLogin());
-            pstm.setString(5, usuario.getSenha());
+            pstm.setLong(1, id);
+            pstm.setString(2, usuario.getNome());
+            pstm.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
+            pstm.setString(4, usuario.getEmail());
+            pstm.setString(5, usuario.getLogin());
+            pstm.setString(6, usuario.getSenha());
 
             pstm.executeUpdate();
+
+            return this.getUsuario(id);
+
         } catch(SQLException e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -49,13 +54,14 @@ public class UsuariosDAO {
                 }
             }
         }
+        return null;
     }
 
-    public static void atualizar(Usuarios usuario) {
+    public Usuarios atualizar(Usuarios usuario) {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         try {
-            String sql = "update usuarios set nome=?, email=?, login=?, senha=? where id = ?";
+            String sql = "update public.usuarios set nome=?, email=?, login=?, senha=? where id = ?";
             pstm = conn.prepareStatement(sql);
 
             pstm.setString(1, usuario.getNome());
@@ -65,6 +71,9 @@ public class UsuariosDAO {
             pstm.setLong(5, usuario.getId());
 
             pstm.executeUpdate();
+
+            return this.getUsuario(usuario.getId());
+
         } catch(SQLException e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -83,13 +92,14 @@ public class UsuariosDAO {
                 }
             }
         }
+        return null;
     }
 
     public static void excluir(Long codigo) {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         try {
-            String sql = "delete from usuarios where id = ?";
+            String sql = "delete from public.usuarios where id = ?";
             pstm = conn.prepareStatement(sql);
             pstm.setLong(1, codigo);
             pstm.executeUpdate();
@@ -113,13 +123,13 @@ public class UsuariosDAO {
         }
     }
 
-    public static Usuarios getUsuario(Long codigo) {
+    public Usuarios getUsuario(Long codigo) {
         Usuarios usuario = null;
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-            String sql = "select id, nome, data_cadastro, email, login, senha from usuarios where id = ?";
+            String sql = "select id, nome, data_cadastro, email, login, senha from public.usuarios where id = ?";
             pstm = conn.prepareStatement(sql);
             pstm.setLong(1, codigo);
             rs = pstm.executeQuery();
@@ -132,6 +142,7 @@ public class UsuariosDAO {
                 usuario.setLogin(rs.getString("login"));
                 usuario.setSenha(rs.getString("senha"));
             }
+            return usuario;
         } catch(SQLException e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -150,7 +161,7 @@ public class UsuariosDAO {
                 }
             }
         }
-        return usuario;
+        return null;
     }
 
     public static List<Usuarios> getUsuarios() {
@@ -159,7 +170,7 @@ public class UsuariosDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-            String sql = "select id, nome, data_cadastro, email, login, senha from usuarios";
+            String sql = "select id, nome, data_cadastro, email, login, senha from public.usuarios";
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
             while(rs.next()) {
@@ -193,13 +204,46 @@ public class UsuariosDAO {
         return lista;
     }
 
+    public static Long getNovoCodUsuario() {
+        Connection conn = Conexao.getConnection();
+        Long retorno = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select nextval('seq_usuarios') as retorno";
+            pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            if(rs.next()) {
+                retorno = rs.getLong("retorno");
+            }
+        } catch(SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            if(pstm != null) {
+                try {
+                    pstm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return retorno;
+    }
+
     public static Long realizarLogin(String login, String senha) {
         Long retorno = null;
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-          String sql = "select id as retorno from usuarios where login = trim(?) and senha = trim(?)";
+          String sql = "select id as retorno from public.usuarios where login = trim(?) and senha = trim(?)";
           pstm = conn.prepareStatement(sql);
 
           pstm.setString(1,login);

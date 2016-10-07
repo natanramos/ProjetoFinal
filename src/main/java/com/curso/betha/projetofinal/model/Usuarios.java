@@ -1,11 +1,9 @@
 package com.curso.betha.projetofinal.model;
 
-import com.curso.betha.projetofinal.dao.UsuariosDAO;
 import com.curso.betha.projetofinal.utils.Parseable;
 import com.curso.betha.projetofinal.utils.Utils;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -82,28 +80,4 @@ public class Usuarios implements Parseable {
         this.login = dados.get("login");
         this.senha = dados.get("senha");
     }
-
-    /*public void salvar() throws Exception{
-        if(this.getId() == null) {
-            UsuariosDAO.salvar(this);
-        } else {
-            UsuariosDAO.atualizar(this);
-        }
-    }
-
-    public void excluir() {
-        UsuariosDAO.excluir(this.getId());
-    }
-
-    public static Usuarios getUsuario(Long codigo) {
-        return UsuariosDAO.getUsuario(codigo);
-    }
-
-    public static List<Usuarios> getUsuarios() {
-        return UsuariosDAO.getUsuarios();
-    }
-
-    public Long realizarLogin(String login, String senha){
-        return UsuariosDAO.realizarLogin(login, senha);
-    }*/
 }

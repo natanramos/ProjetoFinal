@@ -38,6 +38,21 @@ public class UsuariosServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        Usuarios usuario = new Usuarios();
+        usuario.parse(Utils.parseMap(req));
+        if (Utils.isNotEmpty(req.getParameter("id"))) {
+            dao.atualizar(usuario);
+        } else {
+            dao.inserir(usuario);
+        }
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getParameter("id") == null) {
+            resp.sendError(406, "Parâmetro ID não informado para a exclusão!");
+        } else  {
+            dao.excluir(Utils.parseLong(req.getParameter("id")));
+        }
     }
 }

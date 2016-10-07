@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class UsuariosDAO {
 
-    public Usuarios salvar(Usuarios usuario) {
+    public Usuarios inserir(Usuarios usuario) {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         Long id = this.getNovoCodUsuario();

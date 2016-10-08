@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.curso.betha.projetofinal.dao.UsuariosDaoTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.274 sec
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.25 sec

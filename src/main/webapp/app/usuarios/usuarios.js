@@ -41,10 +41,30 @@
             });
         }
 
+        function _validaForm() {
+            if (window.document.getElementById('nome').value.trim() == '') {
+                alert('Informe o nome!');
+                window.document.getElementById('nome').focus();
+                return false;
+            } else if (window.document.getElementById('login').value.trim() == '') {
+                alert('Informe o login!');
+                window.document.getElementById('login').focus();
+                return false;
+            } else if (window.document.getElementById('senha').value.trim() == '') {
+                alert('Informe a senha!');
+                window.document.getElementById('senha').focus();
+                return false;
+            }
+            return true;
+        }
+
         function _salvar() {
-            $.post('../../api/usuarios', $('form[rule=cadastro]').serialize(), function () {
-                _carregar();
-            });
+            if (_validaForm()) {
+                $.post('../../api/usuarios', $('form[rule=cadastro]').serialize(), function () {
+                    $('#myModal').modal('hide');
+                    _carregar();
+                });
+            }
         }
 
         function _remover(id) {
@@ -59,6 +79,10 @@
             })
         }
 
+        function _formataData(data) {
+            return data.substr(8,2) + '/' + data.substr(5,2) + '/' + data.substr(0,4);
+        }
+
         function _renderTable(data) {
             var final = '';
             modeloLinhaTabela = modeloLinhaTabela || $('table.table tbody').html();
@@ -67,7 +91,7 @@
                 var linha = data[i];
                 res = res.replace(/\{\{ID\}\}/g, linha.id);
                 res = res.replace(/\{\{NOME\}\}/g, linha.nome);
-                res = res.replace(/\{\{DATA_CADASTRO\}\}/g, linha.dataCadastro);
+                res = res.replace(/\{\{DATA_CADASTRO\}\}/g, _formataData(linha.dataCadastro));
                 res = res.replace(/\{\{EMAIL\}\}/g, linha.email);
                 final += res;
             }

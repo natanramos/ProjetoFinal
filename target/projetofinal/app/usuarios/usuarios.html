@@ -34,22 +34,6 @@
     <script type="text/javascript" src="../../app/common/js/jquery.js"></script>
     <script type="text/javascript" src="../../app/common/js/jquery.inputmask.bundle.js"></script>
 
-    <!--<script type="text/javascript">
-
-      $(document).ready(function(){
-
-        var cpf = document.getElementById("cpf");
-        var im = new Inputmask("999.999.999-99");
-        im.mask(cpf);
-
-        var telefone = document.getElementById("telefone");
-        var im = new Inputmask("(99) 9999-9999");
-        im.mask(telefone);
-
-      });
-
-    </script>-->
-
   </head>
 
   <body>
@@ -160,7 +144,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="btnSalvar" onclick="ctrl.save()" data-dismiss="modal">Salvar</button>
+              <button type="button" class="btn btn-primary" id="btnSalvar" onclick="ctrl.save()">Salvar</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
           </div>

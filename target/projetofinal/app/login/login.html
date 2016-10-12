@@ -12,17 +12,20 @@
     </head>
     <div class = "container">
         <div class="wrapper">
-            <form name="formLogin" class="form-signin">
+            <form id="formLogin" name="formLogin" class="form-signin" rule="login">
 
                 <h3 class="form-signin-heading">Seja bem vindo!</h3>
                 <hr class="colorgraph"><br>
                 
-                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário" required="true" autofocus="true" maxlength="30"/>
-                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="true" maxlength="20"/>     		  
-                
-                <button id="entrar" class="btn btn-lg btn-primary btn-block">Entrar</button>
+                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário" required="true" autofocus="true" maxlength="50"/>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="true" maxlength="20"/>
+                <button id="btnEntrar" type="button" class="btn btn-lg btn-primary btn-block">Entrar</button>
             </form>
-            <a href="app/home/home.html">Home</a>
         </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script src="app/login/login.js"></script>
+
 </html>

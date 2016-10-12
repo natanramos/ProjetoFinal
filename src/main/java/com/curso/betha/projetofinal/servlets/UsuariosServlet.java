@@ -15,7 +15,7 @@ import java.io.IOException;
  * Created by NatanRamos on 06/10/2016.
  */
 
-@WebServlet("/api/usuarios")
+@WebServlet(urlPatterns = {"api/usuarios", "api/usuarios/remover"})
 public class UsuariosServlet extends HttpServlet {
 
     private final UsuariosDAO dao = new UsuariosDAO();
@@ -48,11 +48,11 @@ public class UsuariosServlet extends HttpServlet {
     }
 
     @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (req.getParameter("id") == null) {
-            resp.sendError(406, "Parâmetro ID não informado para a exclusão!");
-        } else  {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getRequestURI().endsWith("/remover") && "POST".equals(req.getMethod())) {
             dao.excluir(Utils.parseLong(req.getParameter("id")));
+        } else {
+            super.service(req, resp);
         }
     }
 }

@@ -14,8 +14,8 @@
     <schema id="4" parent="1" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>1414</introspection-state-number>
-      <introspection-timestamp>2016-10-05.23:41:27.237</introspection-timestamp>
+      <introspection-state-number>1463</introspection-state-number>
+      <introspection-timestamp>2016-10-12.16:16:54.574</introspection-timestamp>
     </schema>
     <schema id="5" parent="1" name="pg_catalog">
       <object-id>11</object-id>
@@ -61,8 +61,8 @@
       <state-number>1406</state-number>
     </sequence>
     <sequence id="17" parent="4" name="seq_usuarios">
-      <object-id>17359</object-id>
-      <state-number>1352</state-number>
+      <object-id>17451</object-id>
+      <state-number>1463</state-number>
     </sequence>
     <table id="18" parent="4" name="competencias">
       <object-id>17412</object-id>

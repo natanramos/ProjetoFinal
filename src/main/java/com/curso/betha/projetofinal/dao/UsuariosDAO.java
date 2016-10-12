@@ -170,7 +170,7 @@ public class UsuariosDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-            String sql = "select id, nome, data_cadastro, email, login, senha from public.usuarios";
+            String sql = "select id, nome, data_cadastro, email, login, senha from public.usuarios order by usuarios.id";
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
             while(rs.next()) {
@@ -243,7 +243,7 @@ public class UsuariosDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-          String sql = "select id as retorno from public.usuarios where login = trim(?) and senha = trim(?)";
+          String sql = "select min(id) as retorno from public.usuarios where login = trim(?) and senha = trim(?)";
           pstm = conn.prepareStatement(sql);
 
           pstm.setString(1,login);

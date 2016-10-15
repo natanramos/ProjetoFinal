@@ -1,11 +1,13 @@
 package com.curso.betha.projetofinal.model;
 
+import com.curso.betha.projetofinal.utils.Parseable;
+
 import java.util.Date;
 
 /**
  * Created by NatanRamos on 29/09/2016.
  */
-public class Pessoas {
+public class Pessoas implements Parseable {
 
     private Long id;
     private String nome;
@@ -105,5 +107,10 @@ public class Pessoas {
 
     public void setIdEstados(Long idEstados) {
         this.idEstados = idEstados;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{\"id\":\"%s\",\"descricao\":\"%s\",\"dataInicial\":\"%s\",\"dataFinal\":\"%s\",\"dataVencimento\":\"%s\"}", this.id, this.descricao, this.dataInicial, this.dataFinal, this.dataVencimento);
     }
 }

@@ -11,12 +11,7 @@ public class Teste {
 
     public static void main(String args[]) {
 
-        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date data = Utils.getData("2016-01-01");
-
-        System.out.println(data);
-        System.out.println(formato.format(data));
+        System.out.println("Teste");
     }
 
 }

@@ -73,7 +73,7 @@
         }
 
         function _editar(id) {
-            $.getJSON('../../api/competencais', 'id=' + id, function (data) {
+            $.getJSON('../../api/competencias', 'id=' + id, function (data) {
                 _preencheForm(data);
             })
         }
@@ -89,7 +89,7 @@
                 var res = modeloLinhaTabela;
                 var linha = data[i];
                 res = res.replace(/\{\{ID\}\}/g, linha.id);
-                res = res.replace(/\{\{DESCRICAO\}\}/g, linha.nome);
+                res = res.replace(/\{\{DESCRICAO\}\}/g, linha.descricao);
                 res = res.replace(/\{\{DATA_INICIAL\}\}/g, _formataData(linha.dataInicial));
                 res = res.replace(/\{\{DATA_FINAL\}\}/g, _formataData(linha.dataFinal));
                 res = res.replace(/\{\{DATA_VENCIMENTO\}\}/g, _formataData(linha.dataVencimento));

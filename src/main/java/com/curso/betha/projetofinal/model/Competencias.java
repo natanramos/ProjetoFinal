@@ -59,7 +59,7 @@ public class Competencias implements Parseable {
 
     @Override
     public String toString() {
-        return String.format("{\"id\":\"%s\",\"descricao\":\"%s\",\"dataInicial\":\"%s\",\"dataFinal\":\"%s\",\"dataVencimento\":\"%s\"}", this.id, this.descricao, this.dataInicial, this.dataInicial, this.dataVencimento);
+        return String.format("{\"id\":\"%s\",\"descricao\":\"%s\",\"dataInicial\":\"%s\",\"dataFinal\":\"%s\",\"dataVencimento\":\"%s\"}", this.id, this.descricao, this.dataInicial, this.dataFinal, this.dataVencimento);
     }
 
     @Override

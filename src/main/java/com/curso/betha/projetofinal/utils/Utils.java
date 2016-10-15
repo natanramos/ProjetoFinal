@@ -36,7 +36,8 @@ public final class Utils {
 
     public static Date parseDate(String value) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            //SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             return isEmpty(value) ? null : sdf.parse(value);
         } catch (ParseException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);

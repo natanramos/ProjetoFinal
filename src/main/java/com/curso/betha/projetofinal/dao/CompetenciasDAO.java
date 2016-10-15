@@ -165,7 +165,7 @@ public class CompetenciasDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-            String sql = "select id, descricao, data_inicial, data_final, data_vencimento from public.competencias order by usuarios.id";
+            String sql = "select id, descricao, data_inicial, data_final, data_vencimento from public.competencias order by competencias.id";
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
             while(rs.next()) {

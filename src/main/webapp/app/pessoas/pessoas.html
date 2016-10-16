@@ -67,24 +67,28 @@
 
     <div class="container">
       <table class="table">
-        <caption style="font-size: 22px;">Competências <button id="btnAdicionar" onclick="ctrl.add()" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar</button></caption>
+        <caption style="font-size: 22px;">Pessoas <button id="btnAdicionar" onclick="ctrl.add()" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar</button></caption>
         <thead>
           <tr>
             <th>#</th>
-            <th>Descrição</th>
-            <th>Data de início</th>
-            <th>Data de término</th>
-            <th>Data de vencimento</th>
+            <th>Nome</th>
+            <th>Tipo pessoa</th>
+            <th>CPF/CNPJ</th>
+            <th>Data de nascimento</th>
+            <th>Telefone</th>
+            <th>Email</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{ID}}</td>
-            <td>{{DESCRICAO}}</td>
-            <td>{{DATA_INICIAL}}</td>
-            <td>{{DATA_FINAL}}</td>
-            <td>{{DATA_VENCIMENTO}}</td>
+            <td>{{NOME}}</td>
+            <td>{{TIPO_PESSOA}}</td>
+            <td>{{DOCUMENTO}}</td>
+            <td>{{DATA_NASCIMENTO}}</td>
+            <td>{{TELEFONE}}</td>
+            <td>{{EMAIL}}</td>
             <td>
               <a style="padding: 3px;" title="Editar" href="#" onclick="ctrl.edit({{ID}})" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></a>
               <a style="padding: 3px;" title="Excluir" href="#" onclick="ctrl.remove({{ID}})"><span class="glyphicon glyphicon-trash"></span></a>
@@ -100,42 +104,59 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Cadastro de competências</h4>
+              <h4 class="modal-title">Cadastro de pessoas</h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" name="form" id="form" rule="cadastro">
-                <fieldset>
+              <form class="form-inline" name="form" id="form" rule="cadastro">
                   <!-- ID -->
                   <input type="hidden" id="id" name="id">
-                  <!-- Descrição -->
+                  <div class="row">
+                    <!-- Nome -->
+                    <label class="col-md-1" for="nome">Nome</label>
+                    <input id="nome" name="nome" type="text" maxlength="200" class="form-control" required="true">
+                    <!--<div class="col-md-7">
+                      <input id="nome" name="nome" type="text" maxlength="200" class="form-control input-md" required="true">
+                    </div>-->
+                  </div>
+                  <!-- Tipo pessoa -->
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="descricao">Descrição</label>
+                    <label class="col-md-3 control-label" for="tipoPessoa">Tipo</label>
+                    <div class="col-md-2">
+                      <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control">
+                        <option value=""></option>
+                        <option value="F">Física</option>
+                        <option value="J">Jurídica</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- Documento -->
+                  <div class="form-group">
+                    <label class="col-md-2 control-label" for="documento">CPF/CNPJ</label>
+                    <div class="col-md-3">
+                      <input id="documento" name="documento" type="text" maxlength="14" class="form-control input-md" required="true">
+                    </div>
+                  </div>
+                  <!-- Data de nascimento -->
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="dataNascimento">Data de nascimento</label>
+                    <div class="col-md-3">
+                      <input id="dataNascimento" name="dataNascimento" type="date" class="form-control input-md" required="true">
+                    </div>
+                  </div>
+                  <!-- Telefone -->
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="telefone">Telefone</label>
                     <div class="col-md-7">
-                      <input id="descricao" name="descricao" type="text" maxlength="100" class="form-control input-md" required="true">
+                      <input id="telefone" name="telefone" type="text" maxlength="20" class="form-control input-md" required="true">
                     </div>
                   </div>
-                  <!-- Data de início -->
+                  <!-- Email -->
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="dataInicial">Data de início</label>
-                    <div class="col-md-3">
-                      <input id="dataInicial" name="dataInicial" type="date" class="form-control input-md" required="true">
+                    <label class="col-md-3 control-label" for="telefone">Email</label>
+                    <div class="col-md-7">
+                      <input id="email" name="email" type="text" maxlength="100" class="form-control input-md" required="true">
                     </div>
                   </div>
-                  <!-- Data de término -->
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="dataFinal">Data de término</label>
-                    <div class="col-md-3">
-                      <input id="dataFinal" name="dataFinal" type="date" class="form-control input-md" required="true">
-                    </div>
-                  </div>
-                  <!-- Data de vencimento -->
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="dataVencimento">Data de vencimento</label>
-                    <div class="col-md-3">
-                      <input id="dataVencimento" name="dataVencimento" type="date" class="form-control input-md" required="true">
-                    </div>
-                  </div>
-                </fieldset>
               </form>
             </div>
             <div class="modal-footer">
@@ -158,7 +179,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../app/common/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-    <script src="../../app/competencias/competencias.js"></script>
+    <script src="../../app/pessoas/pessoas.js"></script>
 
     <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 70px; text-align: right; background-color: #ccc;">
       <div class="container">

@@ -1,8 +1,10 @@
 package com.curso.betha.projetofinal.model;
 
 import com.curso.betha.projetofinal.utils.Parseable;
+import com.curso.betha.projetofinal.utils.Utils;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by NatanRamos on 29/09/2016.
@@ -18,7 +20,7 @@ public class Pessoas implements Parseable {
     private String email;
     private String rua;
     private String numero;
-    private Long idMunicipio;
+    private Long idMunicipios;
     private Long idEstados;
 
     public Long getId() {
@@ -93,12 +95,12 @@ public class Pessoas implements Parseable {
         this.numero = numero;
     }
 
-    public Long getIdMunicipio() {
-        return idMunicipio;
+    public Long getIdMunicipios() {
+        return idMunicipios;
     }
 
-    public void setIdMunicipio(Long idMunicipio) {
-        this.idMunicipio = idMunicipio;
+    public void setIdMunicipios(Long idMunicipios) {
+        this.idMunicipios = idMunicipios;
     }
 
     public Long getIdEstados() {
@@ -111,6 +113,21 @@ public class Pessoas implements Parseable {
 
     @Override
     public String toString() {
-        return String.format("{\"id\":\"%s\",\"descricao\":\"%s\",\"dataInicial\":\"%s\",\"dataFinal\":\"%s\",\"dataVencimento\":\"%s\"}", this.id, this.descricao, this.dataInicial, this.dataFinal, this.dataVencimento);
+        return String.format("{\"id\":\"%s\",\"nome\":\"%s\",\"tipoPessoa\":\"%s\",\"documento\":\"%s\",\"dataNascimento\":\"%s\",\"telefone\":\"%s\",\"email\":\"%s\",\"rua\":\"%s\",\"numero\":\"%s\",\"idMunicipios\":\"%s\",\"idEstados\":\"%s\"}", this.id, this.nome, this.tipoPessoa, this.documento, this.dataNascimento, this.telefone, this.email, this.rua, this.idMunicipios, this.idEstados);
+    }
+
+    @Override
+    public void parse(Map<String, String> dados) {
+        this.id = dados.get("id") == null || dados.get("id").isEmpty() ? null : Long.parseLong(dados.get("id"));
+        this.nome = dados.get("nome");
+        this.tipoPessoa = dados.get("tipoPessoa");
+        this.documento = dados.get("documento");
+        this.dataNascimento = Utils.parseDate(dados.get("dataNascimento"));
+        this.telefone = dados.get("telefone");
+        this.email = dados.get("email");
+        this.rua = dados.get("rua");
+        this.numero = dados.get("numero");
+        this.idMunicipios = Utils.parseLong(dados.get("idMunicipios"));
+        this.idEstados = Utils.parseLong(dados.get("idEstados"));
     }
 }

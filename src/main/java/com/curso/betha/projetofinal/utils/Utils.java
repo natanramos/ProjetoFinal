@@ -3,7 +3,10 @@ package com.curso.betha.projetofinal.utils;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,6 +17,10 @@ public final class Utils {
 
     public static final Long parseLong(String value) {
         return isEmpty(value) ? null : Long.parseLong(value);
+    }
+
+    public static final Integer parseInteger(String value) {
+        return isEmpty(value) ? null : Integer.parseInt(value);
     }
 
     public static final boolean isEmpty(String value) {

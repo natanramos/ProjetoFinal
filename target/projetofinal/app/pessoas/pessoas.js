@@ -4,20 +4,26 @@
 
 (function () {
 
-    function Competencias(id, descricao, data_inicial, data_final, data_vencimento) {
+    function Pessoas(id, nome, tipo_pessoa, documento, data_nascimento, telefone, email, rua, numero, id_municipios, id_estados) {
         this.id = id;
-        this.descricao = descricao;
-        this.dataInicial = data_inicial;
-        this.dataFinal = data_final;
-        this.dataVencimento = data_vencimento;
+        this.nome = nome;
+        this.tipoPessoa = tipo_pessoa;
+        this.documento = documento;
+        this.dataNascimento = data_nascimento;
+        this.telefone = telefone;
+        this.email = email;
+        this.rua = rua;
+        this.numero = numero;
+        this.idMunicipios = id_municipios;
+        this.idEstados = id_estados;
     }
 
-    function competenciasController() {
+    function pessoasController() {
 
         var modeloLinhaTabela;
 
         function _carregar() {
-            $.getJSON('../../api/competencias', function (data) {
+            $.getJSON('../../api/pessoas', function (data) {
                 _renderTable(data);
             });
         }
@@ -59,7 +65,7 @@
 
         function _salvar() {
             if (_validaForm()) {
-                $.post('../../api/competencias', $('form[rule=cadastro]').serialize(), function () {
+                $.post('../../api/pessoas', $('form[rule=cadastro]').serialize(), function () {
                     $('#myModal').modal('hide');
                     _carregar();
                 });
@@ -67,19 +73,31 @@
         }
 
         function _remover(id) {
-            $.post('../../api/competencias/remover', {id: id} ,function () {
+            $.post('../../api/pessoas/remover', {id: id} ,function () {
                 _carregar();
             });
         }
 
         function _editar(id) {
-            $.getJSON('../../api/competencias', 'id=' + id, function (data) {
+            $.getJSON('../../api/pessoas', 'id=' + id, function (data) {
                 _preencheForm(data);
             })
         }
 
         function _formataData(data) {
+            if (data == 'null') {
+                return '';
+            }
             return data.substr(8,2) + '/' + data.substr(5,2) + '/' + data.substr(0,4);
+        }
+
+        function _formataDocumento(tipoPessoa, documento) {
+            if (tipoPessoa == 'F') {
+                return documento.substr(0,3) + '.' + documento.substr(3,3) + '.' + documento.substr(6,3) + '-' + documento.substr(9,2);
+            } else if (tipoPessoa == 'J') {
+                return documento.substr(0,2) + '.' + documento.substr(2,3) + '.' + documento.substr(5,3) + '/' + documento.substr(8,4) + '-' + documento.substr(12,2);
+            }
+            return documento;
         }
 
         function _renderTable(data) {
@@ -89,10 +107,12 @@
                 var res = modeloLinhaTabela;
                 var linha = data[i];
                 res = res.replace(/\{\{ID\}\}/g, linha.id);
-                res = res.replace(/\{\{DESCRICAO\}\}/g, linha.descricao);
-                res = res.replace(/\{\{DATA_INICIAL\}\}/g, _formataData(linha.dataInicial));
-                res = res.replace(/\{\{DATA_FINAL\}\}/g, _formataData(linha.dataFinal));
-                res = res.replace(/\{\{DATA_VENCIMENTO\}\}/g, _formataData(linha.dataVencimento));
+                res = res.replace(/\{\{NOME\}\}/g, linha.nome);
+                res = res.replace(/\{\{TIPO_PESSOA\}\}/g, linha.tipoPessoa == 'J' ? 'Jurídica': 'Física');
+                res = res.replace(/\{\{DOCUMENTO\}\}/g, _formataDocumento(linha.tipoPessoa, linha.documento));
+                res = res.replace(/\{\{DATA_NASCIMENTO\}\}/g, _formataData(linha.dataNascimento));
+                res = res.replace(/\{\{TELEFONE\}\}/g, linha.telefone);
+                res = res.replace(/\{\{EMAIL\}\}/g, linha.email);
                 final += res;
             }
             $('table.table tbody').html(final);
@@ -107,7 +127,7 @@
     }
 
     $(function () {
-        window.ctrl = competenciasController();
+        window.ctrl = pessoasController();
     });
 
 })();

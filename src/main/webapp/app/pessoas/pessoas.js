@@ -39,7 +39,7 @@
         }
 
         function _adicionar() {
-            _preencheForm(new Competencias());
+            _preencheForm(new Pessoas());
         }
 
         function _validaForm() {

@@ -26,16 +26,28 @@
             $.getJSON('../../api/pessoas', function (data) {
                 _renderTable(data);
             });
+            $.getJSON('../../api/municipios', function (data) {
+                _renderMunicipios(data);
+            });
+            $.getJSON('../../api/estados', function (data) {
+                _renderEstados(data);
+            });
         }
 
         _carregar();
 
         function _preencheForm(registro) {
             $('input[name=id]').val(registro.id);
-            $('input[name=descricao]').val(registro.descricao);
-            $('input[name=dataInicial]').val(registro.dataInicial);
-            $('input[name=dataFinal]').val(registro.dataFinal);
-            $('input[name=dataVencimento]').val(registro.dataVencimento);
+            $('input[name=nome]').val(registro.nome);
+            $('input[name=tipoPessoa]').val(registro.tipoPessoa);
+            $('input[name=documento]').val(registro.documento);
+            $('input[name=dataNascimento]').val(registro.dataNascimento);
+            $('input[name=telefone]').val(registro.telefone);
+            $('input[name=email]').val(registro.email);
+            $('input[name=rua]').val(registro.rua);
+            $('input[name=numero]').val(registro.numero);
+            $('input[name=idMunicipio]').val(registro.idMunicipios);
+            $('input[name=idEstado]').val(registro.idEstados);
         }
 
         function _adicionar() {
@@ -43,21 +55,21 @@
         }
 
         function _validaForm() {
-            if (window.document.getElementById('descricao').value.trim() == '') {
-                alert('Informe a descrição!');
-                window.document.getElementById('descricao').focus();
+            if (window.document.getElementById('nome').value.trim() == '') {
+                alert('Informe o nome!');
+                window.document.getElementById('nome').focus();
                 return false;
-            } else if (window.document.getElementById('dataInicial').value.trim() == '') {
-                alert('Informe a data de início!');
-                window.document.getElementById('dataInicial').focus();
+            } else if (window.document.getElementById('tipoPessoa').value.trim() == '') {
+                alert('Informe o tipo!');
+                window.document.getElementById('tipoPessoa').focus();
                 return false;
-            } else if (window.document.getElementById('dataFinal').value.trim() == '') {
-                alert('Informe a data de término!');
-                window.document.getElementById('dataFinal').focus();
+            } else if (window.document.getElementById('documento').value.trim() == '') {
+                alert('Informe o CPF/CNPJ!');
+                window.document.getElementById('documento').focus();
                 return false;
-            } else if (window.document.getElementById('dataVencimento').value.trim() == '') {
-                alert('Informe a data de vencimento!');
-                window.document.getElementById('dataVencimento').focus();
+            } else if (window.document.getElementById('telefone').value.trim() == '') {
+                alert('Informe o telefone!');
+                window.document.getElementById('telefone').focus();
                 return false;
             }
             return true;
@@ -118,11 +130,59 @@
             $('table.table tbody').html(final);
         }
 
+        function _renderMunicipios(data) {
+            var options = '<option value=""></option>';
+            data.forEach(function (municipio) {
+                options += '<option value="' + municipio.id + '">' + municipio.nome + '</option>';
+            });
+            $("#idMunicipio").html(options);
+        }
+
+        function _renderEstados(data) {
+            var options = '<option value=""></option>';
+            data.forEach(function (estado) {
+                options += '<option value="' + estado.id + '">' + estado.nome + '</option>';
+            });
+            $("#idEstado").html(options);
+        }
+
+        function _changeTipoPessoa() {
+            var tipoPessoa = window.document.getElementById('tipoPessoa').value;
+            var dataNascimento = window.document.getElementById('dataNascimento');
+            var documento = window.document.getElementById('documento');
+            if (tipoPessoa == '') {
+                dataNascimento.value = '';
+                documento.value = '';
+                dataNascimento.disabled = true;
+                documento.disabled = true;
+                return;
+            }
+            if (tipoPessoa == 'F') {
+                dataNascimento.disabled = false;
+                documento.disabled = false;
+                dataNascimento.value = '';
+                documento.value = '';
+                var im = new Inputmask("999.999.999-99");
+                im.mask(documento);
+                return;
+            }
+            if (tipoPessoa == 'J') {
+                dataNascimento.disabled = true;
+                documento.disabled = false;
+                dataNascimento.value = '';
+                documento.value = '';
+                var im = new Inputmask("99.999.999/9999-99");
+                im.mask(documento);
+                return;
+            }
+        }
+
         return {
             add: _adicionar,
             edit: _editar,
             save: _salvar,
-            remove: _remover
+            remove: _remover,
+            changeTipoPessoa: _changeTipoPessoa
         }
     }
 

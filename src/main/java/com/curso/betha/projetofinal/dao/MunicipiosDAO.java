@@ -162,7 +162,7 @@ public class MunicipiosDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-            String sql = "select id, id_estados, nome from public.municipios order by municipios.id";
+            String sql = "select id, id_estados, nome from public.municipios order by municipios.nome";
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
             while(rs.next()) {

@@ -50,4 +50,14 @@ public final class Utils {
         }
         return null;
     }
+
+    public static String limparString(String texto) {
+        texto = texto.replace(".","").trim();
+        texto = texto.replace("/","").trim();
+        texto = texto.replace("-","").trim();
+        texto = texto.replace("(","").trim();
+        texto = texto.replace(")","").trim();
+        texto = texto.replace(" ","").trim();
+        return texto;
+    }
 }

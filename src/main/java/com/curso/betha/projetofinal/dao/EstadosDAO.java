@@ -165,7 +165,7 @@ public class EstadosDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
-            String sql = "select id, codigo_ibge, sigla, nome from public.estados order by estados.id";
+            String sql = "select id, codigo_ibge, sigla, nome from public.estados order by estados.nome";
             pstm = conn.prepareStatement(sql);
             rs = pstm.executeQuery();
             while(rs.next()) {

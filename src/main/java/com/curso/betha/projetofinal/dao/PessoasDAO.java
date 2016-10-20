@@ -2,6 +2,7 @@ package com.curso.betha.projetofinal.dao;
 
 import com.curso.betha.projetofinal.model.Pessoas;
 import com.curso.betha.projetofinal.utils.Conexao;
+import com.curso.betha.projetofinal.utils.Utils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,14 +26,26 @@ public class PessoasDAO {
             pstm.setLong(1, id);
             pstm.setString(2, pessoa.getNome());
             pstm.setString(3, pessoa.getTipoPessoa());
-            pstm.setString(4, pessoa.getDocumento());
-            pstm.setDate(5, new Date(pessoa.getDataNascimento().getTime()));
-            pstm.setString(6, pessoa.getTelefone());
+            pstm.setString(4, Utils.limparString(pessoa.getDocumento()));
+            if (pessoa.getDataNascimento() != null) {
+                pstm.setDate(5, new Date(pessoa.getDataNascimento().getTime()));
+            } else {
+                pstm.setNull(5, Types.DATE);
+            }
+            pstm.setString(6, Utils.limparString(pessoa.getTelefone()));
             pstm.setString(7, pessoa.getEmail());
             pstm.setString(8, pessoa.getRua());
             pstm.setString(9, pessoa.getNumero());
-            pstm.setLong(10, pessoa.getIdMunicipios());
-            pstm.setLong(11, pessoa.getIdEstados());
+            if (pessoa.getIdMunicipios() != null) {
+                pstm.setLong(10, pessoa.getIdMunicipios());
+            } else {
+                pstm.setNull(10, Types.INTEGER);
+            }
+            if (pessoa.getIdEstados() != null) {
+                pstm.setLong(11, pessoa.getIdEstados());
+            } else {
+                pstm.setNull(11, Types.INTEGER);
+            }
 
             pstm.executeUpdate();
 

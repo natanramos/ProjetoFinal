@@ -34,6 +34,18 @@
     <script type="text/javascript" src="../../app/common/js/jquery.js"></script>
     <script type="text/javascript" src="../../app/common/js/jquery.inputmask.bundle.js"></script>
 
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        var telefone = document.getElementById("telefone");
+        var im = new Inputmask("(99) 9999-9999");
+        im.mask(telefone);
+
+      });
+
+    </script>
+
   </head>
 
   <body>
@@ -120,30 +132,32 @@
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="tipoPessoa">Tipo</label>
+                    <label class="col-md-3 control-label" style="text-align: right;" for="tipoPessoa">Tipo</label>
                     <div class="col-md-2">
-                      <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control">
+                      <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control" onchange="ctrl.changeTipoPessoa()">
                         <option value=""></option>
                         <option value="F">Física</option>
                         <option value="J">Jurídica</option>
                       </select>
                     </div>
-                    <label class="col-md-2 control-label" for="documento">CPF/CNPJ</label>
+                    <div class="col-md-1">
+                    </div>
+                    <label class="col-md-2 control-label" style="text-align: right;" for="documento">CPF/CNPJ</label>
                     <div class="col-md-3">
-                      <input id="documento" name="documento" type="text" maxlength="14" class="form-control" required="true">
+                      <input id="documento" name="documento" type="text" class="form-control" required="true" disabled>
                     </div>
                   </div>
                 </div>
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="dataNascimento">Data de nascimento</label>
+                    <label class="col-md-3 control-label" style="text-align: right;" for="dataNascimento">Data de nascimento</label>
                     <div class="col-md-3">
-                      <input id="dataNascimento" name="dataNascimento" type="date" class="form-control" required="true">
+                      <input id="dataNascimento" name="dataNascimento" type="date" class="form-control" required="true" disabled>
                     </div>
-                    <label class="col-md-2 control-label" for="telefone">Telefone</label>
-                    <div class="col-md-4">
-                      <input id="telefone" name="telefone" type="text" maxlength="20" class="form-control" required="true">
+                    <label class="col-md-2 control-label" style="text-align: right;" for="telefone">Telefone</label>
+                    <div class="col-md-3">
+                      <input id="telefone" name="telefone" type="text" class="form-control" required="true">
                     </div>
                   </div>
                 </div>
@@ -176,72 +190,18 @@
                     <div class="col-md-5">
                       <select id="idMunicipio" name="idMunicipio" form="form" class="form-control">
                         <option value=""></option>
-                        <option value="F">Física</option>
-                        <option value="J">Jurídica</option>
                       </select>
                     </div>
                     <label class="col-lg-1 control-label" for="idEstado">Estado</label>
                     <div class="col-md-5">
                       <select id="idEstado" name="idEstado" form="form" class="form-control">
                         <option value=""></option>
-                        <option value="F">Física</option>
-                        <option value="J">Jurídica</option>
                       </select>
                     </div>
                   </div>
                 </div>
 
               </form>
-              <!--<form class="form-horizontal" name="form" id="form" rule="cadastro">
-                  &lt;!&ndash; ID &ndash;&gt;
-                  <input type="hidden" id="id" name="id">
-                  &lt;!&ndash; Nome &ndash;&gt;
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="nome">Nome</label>
-                    <div class="col-md-7">
-                      <input id="nome" name="nome" type="text" maxlength="200" class="form-control input-md" required="true">
-                    </div>
-                  </div>
-                  &lt;!&ndash; Tipo pessoa &ndash;&gt;
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="tipoPessoa">Tipo</label>
-                    <div class="col-md-2">
-                      <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control">
-                        <option value=""></option>
-                        <option value="F">Física</option>
-                        <option value="J">Jurídica</option>
-                      </select>
-                    </div>
-                  </div>
-                  &lt;!&ndash; Documento &ndash;&gt;
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="documento">CPF/CNPJ</label>
-                    <div class="col-md-3">
-                      <input id="documento" name="documento" type="text" maxlength="14" class="form-control input-md" required="true">
-                    </div>
-                  </div>
-                  &lt;!&ndash; Data de nascimento &ndash;&gt;
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="dataNascimento">Data de nascimento</label>
-                    <div class="col-md-3">
-                      <input id="dataNascimento" name="dataNascimento" type="date" class="form-control input-md" required="true">
-                    </div>
-                  </div>
-                  &lt;!&ndash; Telefone &ndash;&gt;
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="telefone">Telefone</label>
-                    <div class="col-md-7">
-                      <input id="telefone" name="telefone" type="text" maxlength="20" class="form-control input-md" required="true">
-                    </div>
-                  </div>
-                  &lt;!&ndash; Email &ndash;&gt;
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" for="telefone">Email</label>
-                    <div class="col-md-7">
-                      <input id="email" name="email" type="text" maxlength="100" class="form-control input-md" required="true">
-                    </div>
-                  </div>
-              </form>-->
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary" id="btnSalvar" onclick="ctrl.save()">Salvar</button>

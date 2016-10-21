@@ -120,7 +120,7 @@
             </div>
             <div class="modal-body">
               <form id="form" name="form" rule="cadastro">
-
+                <input type="hidden" id="id" name="id">
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
                     <label class="col-md-1 control-label" for="nome">Nome</label>
@@ -136,7 +136,7 @@
                     <div class="col-md-2">
                       <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control" onchange="ctrl.changeTipoPessoa()">
                         <option value=""></option>
-                        <option value="F">Física</option>
+                        <option value="F" selected>Física</option>
                         <option value="J">Jurídica</option>
                       </select>
                     </div>
@@ -186,15 +186,15 @@
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-lg-1 control-label" for="idMunicipio">Cidade</label>
+                    <label class="col-lg-1 control-label" for="idMunicipios">Cidade</label>
                     <div class="col-md-5">
-                      <select id="idMunicipio" name="idMunicipio" form="form" class="form-control">
+                      <select id="idMunicipios" name="idMunicipios" form="form" class="form-control">
                         <option value=""></option>
                       </select>
                     </div>
-                    <label class="col-lg-1 control-label" for="idEstado">Estado</label>
+                    <label class="col-lg-1 control-label" for="idEstados">Estado</label>
                     <div class="col-md-5">
-                      <select id="idEstado" name="idEstado" form="form" class="form-control">
+                      <select id="idEstados" name="idEstados" form="form" class="form-control">
                         <option value=""></option>
                       </select>
                     </div>

@@ -33,9 +33,21 @@ public class PessoasDAO {
                 pstm.setNull(5, Types.DATE);
             }
             pstm.setString(6, Utils.limparString(pessoa.getTelefone()));
-            pstm.setString(7, pessoa.getEmail());
-            pstm.setString(8, pessoa.getRua());
-            pstm.setString(9, pessoa.getNumero());
+            if (pessoa.getEmail() != null && !"".equals(pessoa.getEmail())) {
+                pstm.setString(7, pessoa.getEmail());
+            } else {
+                pstm.setNull(7, Types.VARCHAR);
+            }
+            if (pessoa.getRua() != null && !"".equals(pessoa.getRua())) {
+                pstm.setString(8, pessoa.getRua());
+            } else {
+                pstm.setNull(8, Types.VARCHAR);
+            }
+            if (pessoa.getNumero() != null && !"".equals(pessoa.getNumero())) {
+                pstm.setString(9, pessoa.getNumero());
+            } else {
+                pstm.setNull(9, Types.VARCHAR);
+            }
             if (pessoa.getIdMunicipios() != null) {
                 pstm.setLong(10, pessoa.getIdMunicipios());
             } else {
@@ -81,14 +93,38 @@ public class PessoasDAO {
 
             pstm.setString(1, pessoa.getNome());
             pstm.setString(2, pessoa.getTipoPessoa());
-            pstm.setString(3, pessoa.getDocumento());
-            pstm.setDate(4, new Date(pessoa.getDataNascimento().getTime()));
-            pstm.setString(5, pessoa.getTelefone());
-            pstm.setString(6, pessoa.getEmail());
-            pstm.setString(7, pessoa.getRua());
-            pstm.setString(8, pessoa.getNumero());
-            pstm.setLong(9, pessoa.getIdMunicipios());
-            pstm.setLong(10, pessoa.getIdEstados());
+            pstm.setString(3, Utils.limparString(pessoa.getDocumento()));
+            if (pessoa.getDataNascimento() != null) {
+                pstm.setDate(4, new Date(pessoa.getDataNascimento().getTime()));
+            } else {
+                pstm.setNull(4, Types.DATE);
+            }
+            pstm.setString(5, Utils.limparString(pessoa.getTelefone()));
+            if (pessoa.getEmail() != null && !"".equals(pessoa.getEmail())) {
+                pstm.setString(6, pessoa.getEmail());
+            } else {
+                pstm.setNull(6, Types.VARCHAR);
+            }
+            if (pessoa.getRua() != null && !"".equals(pessoa.getRua())) {
+                pstm.setString(7, pessoa.getRua());
+            } else {
+                pstm.setNull(7, Types.VARCHAR);
+            }
+            if (pessoa.getNumero() != null && !"".equals(pessoa.getNumero())) {
+                pstm.setString(8, pessoa.getNumero());
+            } else {
+                pstm.setNull(8, Types.VARCHAR);
+            }
+            if (pessoa.getIdMunicipios() != null) {
+                pstm.setLong(9, pessoa.getIdMunicipios());
+            } else {
+                pstm.setNull(9, Types.INTEGER);
+            }
+            if (pessoa.getIdEstados() != null) {
+                pstm.setLong(10, pessoa.getIdEstados());
+            } else {
+                pstm.setNull(10, Types.INTEGER);
+            }
             pstm.setLong(11, pessoa.getId());
 
             pstm.executeUpdate();

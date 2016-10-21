@@ -30,21 +30,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="true">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a33fc84f-790c-4e48-beaa-edc977c3f21f/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="22" />
+            <state relative-caret-position="75">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pessoas.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PessoasDAO.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/PessoasDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="125" column="48" selection-start-line="125" selection-start-column="48" selection-end-line="125" selection-end-column="48" />
+              <folding>
+                <marker date="1477016440986" expanded="true" signature="624:680" ph="insert into public.pessoas... " />
+                <marker date="1477016440986" expanded="true" signature="3193:3354" ph="update publi... " />
+                <marker date="1477016440986" expanded="true" signature="5889:5928" ph="delete from " />
+                <marker date="1477016440986" expanded="true" signature="6944:7090" ph="select id, d... competencias" />
+                <marker date="1477016440986" expanded="true" signature="8934:9087" ph="select id, d... competencias" />
+                <marker date="1477016440986" expanded="true" signature="10884:10924" ph="select nextv... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pessoas.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="49" column="62" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
+            <state relative-caret-position="-98">
+              <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -53,8 +70,8 @@
       <file leaf-file-name="pessoas.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3050">
-              <caret line="197" column="50" selection-start-line="197" selection-start-column="50" selection-end-line="197" selection-end-column="50" />
+            <state relative-caret-position="250">
+              <caret line="122" column="55" selection-start-line="122" selection-start-column="55" selection-end-line="122" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -112,9 +129,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/servlets/UtilitariosServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/login/login.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Usuarios.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/UsuariosDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/servlets/UsuariosServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/app/usuarios/usuarios.js" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/servlets/CompetenciasServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/competencias/competencias.html" />
@@ -130,13 +145,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Estados.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/servlets/EstadosServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Pessoas.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/EstadosDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/MunicipiosDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/PessoasDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/UsuariosDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/app/usuarios/usuarios.js" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a33fc84f-790c-4e48-beaa-edc977c3f21f/console.sql" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/PessoasDAO.java" />
       </list>
     </option>
   </component>
@@ -187,6 +204,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -453,7 +471,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1210,6 +1227,7 @@
       <workItem from="1476750054765" duration="6091000" />
       <workItem from="1476839483064" duration="6443000" />
       <workItem from="1476913679948" duration="11261000" />
+      <workItem from="1477007388471" duration="8516000" />
     </task>
     <servers />
   </component>
@@ -1246,7 +1264,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126237000" />
+    <option name="totallyTimeSpent" value="134753000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1259,7 +1277,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28621495" sideWeight="0.5053996" order="7" side_tool="true" content_ui="tabs" />
@@ -1571,42 +1589,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/usuarios/usuarios.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="139" column="133" selection-start-line="139" selection-start-column="133" selection-end-line="139" selection-end-column="133" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Usuarios.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="81" column="0" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/usuarios/usuarios.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/UsuariosDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <marker date="1476293689872" expanded="true" signature="682:729" ph="insert into usuarios... " />
-            <marker date="1476293689872" expanded="true" signature="2035:2108" ph="update usuar... " />
-            <marker date="1476293689872" expanded="true" signature="3356:3396" ph="delete from " />
-            <marker date="1476293689872" expanded="true" signature="4416:4501" ph="select id, n... usuarios" />
-            <marker date="1476293689872" expanded="true" signature="6031:6103" ph="select id, n... usuarios" />
-            <marker date="1476293689872" expanded="true" signature="6031:6124" ph="select id, n... usuarios" />
-            <marker date="1476293689872" expanded="true" signature="7605:7635" ph="select coale... usuarios" />
-            <marker date="1476293689872" expanded="true" signature="7605:7646" ph="select nextv... " />
-            <marker date="1476293689872" expanded="true" signature="8763:8851" ph="select i_usu... usuarios" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1705,20 +1691,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Pessoas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="114" column="30" selection-start-line="114" selection-start-column="30" selection-end-line="114" selection-end-column="30" />
-          <folding>
-            <element signature="e#2028#2029#0" expanded="false" />
-            <element signature="e#2076#2077#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1774,25 +1746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3050">
-          <caret line="197" column="50" selection-start-line="197" selection-start-column="50" selection-end-line="197" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#1;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#1;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#5;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/banco/Script_Banco(Projeto Final).sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1625">
@@ -1817,33 +1770,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/model/Pessoas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="129" column="67" selection-start-line="129" selection-start-column="67" selection-end-line="129" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/usuarios/usuarios.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="106" column="18" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="122" column="55" selection-start-line="122" selection-start-column="55" selection-end-line="122" selection-end-column="55" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#0;n#div#2;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#5;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/usuarios/usuarios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="31" column="85" selection-start-line="31" selection-start-column="85" selection-end-line="31" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/UsuariosDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+          <folding>
+            <marker date="1477014510876" expanded="true" signature="581:628" ph="insert into usuarios... " />
+            <marker date="1477014510876" expanded="true" signature="2101:2174" ph="update usuar... " />
+            <marker date="1477014510876" expanded="true" signature="3589:3629" ph="delete from " />
+            <marker date="1477014510876" expanded="true" signature="4649:4734" ph="select id, n... usuarios" />
+            <marker date="1477014510876" expanded="true" signature="6264:6336" ph="select id, n... usuarios" />
+            <marker date="1477014510876" expanded="true" signature="6264:6357" ph="select id, n... usuarios" />
+            <marker date="1477014510876" expanded="true" signature="7838:7868" ph="select coale... usuarios" />
+            <marker date="1477014510876" expanded="true" signature="7838:7879" ph="select nextv... " />
+            <marker date="1477014510876" expanded="true" signature="8996:9084" ph="select i_usu... usuarios" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-98">
+          <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/curso/betha/projetofinal/dao/PessoasDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="371">
+          <caret line="125" column="48" selection-start-line="125" selection-start-column="48" selection-end-line="125" selection-end-column="48" />
           <folding>
-            <marker date="1476929340935" expanded="true" signature="624:680" ph="insert into public.pessoas... " />
-            <marker date="1476929340935" expanded="true" signature="2700:2861" ph="update publi... " />
-            <marker date="1476929340935" expanded="true" signature="4449:4488" ph="delete from " />
-            <marker date="1476929340935" expanded="true" signature="5504:5650" ph="select id, d... competencias" />
-            <marker date="1476929340935" expanded="true" signature="7494:7647" ph="select id, d... competencias" />
-            <marker date="1476929340935" expanded="true" signature="9444:9484" ph="select nextv... " />
+            <marker date="1477016440986" expanded="true" signature="624:680" ph="insert into public.pessoas... " />
+            <marker date="1477016440986" expanded="true" signature="3193:3354" ph="update publi... " />
+            <marker date="1477016440986" expanded="true" signature="5889:5928" ph="delete from " />
+            <marker date="1477016440986" expanded="true" signature="6944:7090" ph="select id, d... competencias" />
+            <marker date="1477016440986" expanded="true" signature="8934:9087" ph="select id, d... competencias" />
+            <marker date="1477016440986" expanded="true" signature="10884:10924" ph="select nextv... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a33fc84f-790c-4e48-beaa-edc977c3f21f/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/app/pessoas/pessoas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="49" column="62" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
+        <state relative-caret-position="75">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="23" />
           <folding />
         </state>
       </provider>

@@ -3,10 +3,7 @@ package com.curso.betha.projetofinal.dao;
 import com.curso.betha.projetofinal.model.Usuarios;
 import com.curso.betha.projetofinal.utils.Conexao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,7 +25,11 @@ public class UsuariosDAO {
             pstm.setLong(1, id);
             pstm.setString(2, usuario.getNome());
             pstm.setDate(3, new java.sql.Date(new java.util.Date().getTime()));
-            pstm.setString(4, usuario.getEmail());
+            if (usuario.getEmail() != null && !"".equals(usuario.getEmail())) {
+                pstm.setString(4, usuario.getEmail());
+            } else {
+                pstm.setNull(4, Types.VARCHAR);
+            }
             pstm.setString(5, usuario.getLogin());
             pstm.setString(6, usuario.getSenha());
 
@@ -65,7 +66,11 @@ public class UsuariosDAO {
             pstm = conn.prepareStatement(sql);
 
             pstm.setString(1, usuario.getNome());
-            pstm.setString(2, usuario.getEmail());
+            if (usuario.getEmail() != null && !"".equals(usuario.getEmail())) {
+                pstm.setString(2, usuario.getEmail());
+            } else {
+                pstm.setNull(2, Types.VARCHAR);
+            }
             pstm.setString(3, usuario.getLogin());
             pstm.setString(4, usuario.getSenha());
             pstm.setLong(5, usuario.getId());

@@ -23,14 +23,17 @@
         var modeloLinhaTabela;
 
         function _carregar() {
+            $('#tipoPessoa option[value=""]').attr({ selected : "selected" });
             $.getJSON('../../api/pessoas', function (data) {
                 _renderTable(data);
             });
             $.getJSON('../../api/municipios', function (data) {
                 _renderMunicipios(data);
+                $('#idMunicipios option[value=""]').attr({ selected : "selected" });
             });
             $.getJSON('../../api/estados', function (data) {
                 _renderEstados(data);
+                $('#idEstados option[value=""]').attr({ selected : "selected" });
             });
         }
 
@@ -39,13 +42,15 @@
         function _preencheForm(registro) {
             $('input[name=id]').val(registro.id);
             $('input[name=nome]').val(registro.nome);
-            $('input[name=tipoPessoa]').val(registro.tipoPessoa);
+            $('select[name=tipoPessoa]').val(registro.tipoPessoa);
             $('input[name=documento]').val(registro.documento);
             $('input[name=dataNascimento]').val(registro.dataNascimento);
             $('input[name=telefone]').val(registro.telefone);
-            $('input[name=email]').val(registro.email);
-            $('input[name=rua]').val(registro.rua);
-            $('input[name=numero]').val(registro.numero);
+            $('input[name=email]').val(registro.email == 'null' ? '' : registro.email);
+            $('input[name=rua]').val(registro.rua == 'null' ? '' : registro.rua);
+            $('input[name=numero]').val(registro.numero == 'null' ? '' : registro.numero);
+            $('select[name=idMunicipios]').val(registro.idMunicipios);
+            $('select[name=idEstados]').val(registro.idEstados);
         }
 
         function _adicionar() {
@@ -90,6 +95,7 @@
 
         function _editar(id) {
             $.getJSON('../../api/pessoas', 'id=' + id, function (data) {
+                _changeCampos(data.tipoPessoa);
                 _preencheForm(data);
             })
         }
@@ -122,7 +128,7 @@
                 res = res.replace(/\{\{DOCUMENTO\}\}/g, _formataDocumento(linha.tipoPessoa, linha.documento));
                 res = res.replace(/\{\{DATA_NASCIMENTO\}\}/g, _formataData(linha.dataNascimento));
                 res = res.replace(/\{\{TELEFONE\}\}/g, linha.telefone);
-                res = res.replace(/\{\{EMAIL\}\}/g, linha.email);
+                res = res.replace(/\{\{EMAIL\}\}/g, linha.email == 'null' ? '' : linha.email);
                 final += res;
             }
             $('table.table tbody').html(final);
@@ -133,7 +139,7 @@
             data.forEach(function (municipio) {
                 options += '<option value="' + municipio.id + '">' + municipio.nome + '</option>';
             });
-            $("#idMunicipio").html(options);
+            $("#idMunicipios").html(options);
         }
 
         function _renderEstados(data) {
@@ -141,7 +147,34 @@
             data.forEach(function (estado) {
                 options += '<option value="' + estado.id + '">' + estado.nome + '</option>';
             });
-            $("#idEstado").html(options);
+            $("#idEstados").html(options);
+        }
+
+        function _changeCampos(tipoPessoa) {
+            //var tipoPessoa = window.document.getElementById('tipoPessoa').value;
+            var dataNascimento = window.document.getElementById('dataNascimento');
+            var documento = window.document.getElementById('documento');
+            if (tipoPessoa == '') {
+                dataNascimento.value = '';
+                documento.value = '';
+                dataNascimento.disabled = true;
+                documento.disabled = true;
+                return;
+            }
+            if (tipoPessoa == 'F') {
+                dataNascimento.disabled = false;
+                documento.disabled = false;
+                var im = new Inputmask("999.999.999-99");
+                im.mask(documento);
+                return;
+            }
+            if (tipoPessoa == 'J') {
+                dataNascimento.disabled = true;
+                documento.disabled = false;
+                var im = new Inputmask("99.999.999/9999-99");
+                im.mask(documento);
+                return;
+            }
         }
 
         function _changeTipoPessoa() {

@@ -29,7 +29,7 @@
             $('input[name=id]').val(registro.id);
             $('input[name=nome]').val(registro.nome);
             $('input[name=dataCadastro]').val(registro.dataCadastro);
-            $('input[name=email]').val(registro.email);
+            $('input[name=email]').val(registro.email == 'null' ? '' : registro.email);
             $('input[name=login]').val(registro.login);
             $('input[name=senha]').val(registro.senha);
         }
@@ -92,7 +92,7 @@
                 res = res.replace(/\{\{ID\}\}/g, linha.id);
                 res = res.replace(/\{\{NOME\}\}/g, linha.nome);
                 res = res.replace(/\{\{DATA_CADASTRO\}\}/g, _formataData(linha.dataCadastro));
-                res = res.replace(/\{\{EMAIL\}\}/g, linha.email);
+                res = res.replace(/\{\{EMAIL\}\}/g, linha.email == 'null' ? '' : linha.email);
                 final += res;
             }
             $('table.table tbody').html(final);

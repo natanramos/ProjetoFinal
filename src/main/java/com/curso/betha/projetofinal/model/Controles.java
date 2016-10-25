@@ -1,12 +1,15 @@
 package com.curso.betha.projetofinal.model;
 
-import java.math.BigDecimal;
+import com.curso.betha.projetofinal.utils.Parseable;
+import com.curso.betha.projetofinal.utils.Utils;
+
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by NatanRamos on 30/09/2016.
  */
-public class Controles {
+public class Controles implements Parseable {
 
     private Long id;
     private String mensalista;
@@ -19,7 +22,7 @@ public class Controles {
     private Date dataHoraEntrada;
     private Date dataHoraSaida;
     private String situacao;
-    private BigDecimal valor;
+    private Double valor;
 
     public Long getId() {
         return id;
@@ -109,11 +112,33 @@ public class Controles {
         this.situacao = situacao;
     }
 
-    public BigDecimal getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{\"id\":\"%s\",\"mensalista\":\"%s\",\"idPessoas\":\"%s\",\"placa\":\"%s\",\"marca\":\"%s\",\"modelo\":\"%s\",\"cor\":\"%s\",\"responsavel\":\"%s\",\"dataHoraEntrada\":\"%s\",\"dataHoraSaida\":\"%s\",\"situacao\":\"%s\",\"valor\":\"%s\"}",
+                this.id, this.mensalista, this.idPessoas, this.placa, this.marca, this.modelo, this.cor, this.responsavel, this.dataHoraEntrada, this.dataHoraSaida, this.situacao, this.valor);
+    }
+
+    @Override
+    public void parse(Map<String, String> dados) {
+        this.id = dados.get("id") == null || dados.get("id").isEmpty() ? null : Long.parseLong(dados.get("id"));
+        this.mensalista = dados.get("mensalista");
+        this.idPessoas = Utils.parseLong(dados.get("idPessoas"));
+        this.placa = dados.get("placa");
+        this.marca = dados.get("marca");
+        this.modelo = dados.get("modelo");
+        this.cor = dados.get("cor");
+        this.responsavel = dados.get("responsavel");
+        this.dataHoraEntrada = Utils.parseDateTime(dados.get("dataHoraEntrada"));
+        this.dataHoraSaida = Utils.parseDateTime(dados.get("dataHoraSaida"));
+        this.situacao = dados.get("situacao");
+        this.valor = Utils.parseDouble(dados.get("valor"));
     }
 }

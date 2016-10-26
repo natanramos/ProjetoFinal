@@ -151,7 +151,6 @@
         }
 
         function _changeCampos(tipoPessoa) {
-            //var tipoPessoa = window.document.getElementById('tipoPessoa').value;
             var dataNascimento = window.document.getElementById('dataNascimento');
             var documento = window.document.getElementById('documento');
             if (tipoPessoa == '') {

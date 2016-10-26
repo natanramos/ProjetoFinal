@@ -34,25 +34,13 @@
     <script type="text/javascript" src="../../app/common/js/jquery.js"></script>
     <script type="text/javascript" src="../../app/common/js/jquery.inputmask.bundle.js"></script>
 
-    <script type="text/javascript">
-
-      $(document).ready(function(){
-
-        var telefone = document.getElementById("telefone");
-        var im = new Inputmask("(99) 9999-9999");
-        im.mask(telefone);
-
-      });
-
-    </script>
-
   </head>
 
   <body>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
 
-      <div class="container">
+      <div class="container" style="width: 1500px;">
 
         <div class="navbar-header">
           <a class="navbar-brand" style="font-size: 20px; color: white;" href="../../app/home/home.html">Controle de estacionamento</a>
@@ -77,30 +65,36 @@
 
     </nav>
 
-    <div class="container">
+    <div class="container" style="width: 1500px;">
       <table class="table">
-        <caption style="font-size: 22px;">Pessoas <button id="btnAdicionar" onclick="ctrl.add()" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar</button></caption>
+        <caption style="font-size: 22px;">Controles <button id="btnAdicionar" onclick="ctrl.add()" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar</button></caption>
         <thead>
           <tr>
             <th>#</th>
-            <th>Nome</th>
-            <th>Tipo pessoa</th>
-            <th>CPF/CNPJ</th>
-            <th>Data de nascimento</th>
-            <th>Telefone</th>
-            <th>Email</th>
+            <th>Mensalista</th>
+            <th>Cliente</th>
+            <th>Placa</th>
+            <th>Modelo</th>
+            <th>Data/hora de entrada</th>
+            <th>Data/hora de saída</th>
+            <th>Responsável</th>
+            <th>Valor</th>
+            <th>Situação</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>{{ID}}</td>
-            <td>{{NOME}}</td>
-            <td>{{TIPO_PESSOA}}</td>
-            <td>{{DOCUMENTO}}</td>
-            <td>{{DATA_NASCIMENTO}}</td>
-            <td>{{TELEFONE}}</td>
-            <td>{{EMAIL}}</td>
+            <td>{{MENSALISTA}}</td>
+            <td>{{PESSOA}}</td>
+            <td>{{PLACA}}</td>
+            <td>{{MODELO}}</td>
+            <td>{{DATA_HORA_ENTRADA}}</td>
+            <td>{{DATA_HORA_SAIDA}}</td>
+            <td>{{RESPONSAVEL}}</td>
+            <td>{{VALOR}}</td>
+            <td>{{SITUACAO}}</td>
             <td>
               <a style="padding: 3px;" title="Editar" href="#" onclick="ctrl.edit({{ID}})" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></a>
               <a style="padding: 3px;" title="Excluir" href="#" onclick="ctrl.remove({{ID}})"><span class="glyphicon glyphicon-trash"></span></a>
@@ -223,7 +217,7 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../app/common/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-    <script src="../../app/pessoas/pessoas.js"></script>
+    <script src="../../app/controles/controles.js"></script>
 
     <nav class="navbar navbar-default navbar-fixed-bottom" style="height: 70px; text-align: right; background-color: #ccc;">
       <div class="container">

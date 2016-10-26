@@ -104,7 +104,7 @@ create table public.controles(
 id bigint not null,
 mensalista varchar(1) not null,
 id_pessoas integer,
-placa varchar(6) not null,
+placa varchar(7) not null,
 marca varchar(2),
 modelo varchar(100),
 cor varchar(50),

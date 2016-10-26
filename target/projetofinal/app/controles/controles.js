@@ -4,36 +4,33 @@
 
 (function () {
 
-    function Pessoas(id, nome, tipo_pessoa, documento, data_nascimento, telefone, email, rua, numero, id_municipios, id_estados) {
+    function Controles(id, mensalista, id_pessoas, placa, marca, modelo, cor, responsavel, data_hora_entrada, data_hora_saida, situacao, valor) {
         this.id = id;
-        this.nome = nome;
-        this.tipoPessoa = tipo_pessoa;
-        this.documento = documento;
-        this.dataNascimento = data_nascimento;
-        this.telefone = telefone;
-        this.email = email;
-        this.rua = rua;
-        this.numero = numero;
-        this.idMunicipios = id_municipios;
-        this.idEstados = id_estados;
+        this.mensalista = mensalista;
+        this.idPessoas = id_pessoas;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.responsavel = responsavel;
+        this.dataHoraEntrada = data_hora_entrada;
+        this.dataHoraSaida = data_hora_saida;
+        this.situacao = situacao;
+        this.valor = valor;
     }
 
-    function pessoasController() {
+    function controlesController() {
 
         var modeloLinhaTabela;
 
         function _carregar() {
-            $('#tipoPessoa option[value=""]').attr({ selected : "selected" });
-            $.getJSON('../../api/pessoas', function (data) {
+            //$('#tipoPessoa option[value=""]').attr({ selected : "selected" });
+            $.getJSON('../../api/controles', function (data) {
                 _renderTable(data);
             });
-            $.getJSON('../../api/municipios', function (data) {
-                _renderMunicipios(data);
-                $('#idMunicipios option[value=""]').attr({ selected : "selected" });
-            });
-            $.getJSON('../../api/estados', function (data) {
-                _renderEstados(data);
-                $('#idEstados option[value=""]').attr({ selected : "selected" });
+            $.getJSON('../../api/pessoas', function (data) {
+                _renderPessoas(data);
+                $('#idPessoas option[value=""]').attr({ selected : "selected" });
             });
         }
 
@@ -41,16 +38,17 @@
 
         function _preencheForm(registro) {
             $('input[name=id]').val(registro.id);
-            $('input[name=nome]').val(registro.nome);
-            $('select[name=tipoPessoa]').val(registro.tipoPessoa);
-            $('input[name=documento]').val(registro.documento);
-            $('input[name=dataNascimento]').val(registro.dataNascimento);
-            $('input[name=telefone]').val(registro.telefone);
-            $('input[name=email]').val(registro.email == 'null' ? '' : registro.email);
-            $('input[name=rua]').val(registro.rua == 'null' ? '' : registro.rua);
-            $('input[name=numero]').val(registro.numero == 'null' ? '' : registro.numero);
-            $('select[name=idMunicipios]').val(registro.idMunicipios);
-            $('select[name=idEstados]').val(registro.idEstados);
+            $('select[name=mensalista]').val(registro.mensalista);
+            $('select[name=idPessoas]').val(registro.idPessoas);
+            $('input[name=placa]').val(registro.placa);
+            $('select[name=marca]').val(registro.marca);
+            $('input[name=modelo]').val(registro.modelo);
+            $('input[name=cor]').val(registro.cor == 'null' ? '' : registro.cor);
+            $('input[name=responsavel]').val(registro.responsavel == 'null' ? '' : registro.responsavel);
+            $('input[name=dataHoraEntrada]').val(registro.dataHoraEntrada);
+            $('input[name=dataHoraSaida]').val(registro.dataHoraSaida);
+            $('select[name=situacao]').val(registro.situacao);
+            $('input[name=valor]').val(registro.valor);
         }
 
         function _adicionar() {
@@ -80,7 +78,7 @@
 
         function _salvar() {
             if (_validaForm()) {
-                $.post('../../api/pessoas', $('form[rule=cadastro]').serialize(), function () {
+                $.post('../../api/controles', $('form[rule=cadastro]').serialize(), function () {
                     $('#myModal').modal('hide');
                     _carregar();
                 });
@@ -88,13 +86,13 @@
         }
 
         function _remover(id) {
-            $.post('../../api/pessoas/remover', {id: id} ,function () {
+            $.post('../../api/controles/remover', {id: id} ,function () {
                 _carregar();
             });
         }
 
         function _editar(id) {
-            $.getJSON('../../api/pessoas', 'id=' + id, function (data) {
+            $.getJSON('../../api/controles', 'id=' + id, function (data) {
                 _changeCampos(data.tipoPessoa);
                 _preencheForm(data);
             })
@@ -107,13 +105,11 @@
             return data.substr(8,2) + '/' + data.substr(5,2) + '/' + data.substr(0,4);
         }
 
-        function _formataDocumento(tipoPessoa, documento) {
-            if (tipoPessoa == 'F') {
-                return documento.substr(0,3) + '.' + documento.substr(3,3) + '.' + documento.substr(6,3) + '-' + documento.substr(9,2);
-            } else if (tipoPessoa == 'J') {
-                return documento.substr(0,2) + '.' + documento.substr(2,3) + '.' + documento.substr(5,3) + '/' + documento.substr(8,4) + '-' + documento.substr(12,2);
+        function _formataSituacao(situacao) {
+            if (situacao == 'A') {
+                return 'Aberto'
             }
-            return documento;
+            return '';
         }
 
         function _renderTable(data) {
@@ -123,35 +119,29 @@
                 var res = modeloLinhaTabela;
                 var linha = data[i];
                 res = res.replace(/\{\{ID\}\}/g, linha.id);
-                res = res.replace(/\{\{NOME\}\}/g, linha.nome);
-                res = res.replace(/\{\{TIPO_PESSOA\}\}/g, linha.tipoPessoa == 'J' ? 'Jurídica': 'Física');
-                res = res.replace(/\{\{DOCUMENTO\}\}/g, _formataDocumento(linha.tipoPessoa, linha.documento));
-                res = res.replace(/\{\{DATA_NASCIMENTO\}\}/g, _formataData(linha.dataNascimento));
-                res = res.replace(/\{\{TELEFONE\}\}/g, linha.telefone);
-                res = res.replace(/\{\{EMAIL\}\}/g, linha.email == 'null' ? '' : linha.email);
+                res = res.replace(/\{\{MENSALISTA\}\}/g, linha.mensalista == 'S' ? 'Sim': 'Não');
+                res = res.replace(/\{\{PESSOA\}\}/g, linha.pessoa.nome);
+                res = res.replace(/\{\{PLACA\}\}/g, linha.placa);
+                res = res.replace(/\{\{MODELO\}\}/g, linha.modelo == 'null' ? '' : linha.modelo);
+                res = res.replace(/\{\{DATA_HORA_ENTRADA\}\}/g, _formataData(linha.dataHoraEntrada));
+                res = res.replace(/\{\{DATA_HORA_SAIDA\}\}/g, _formataData(linha.dataHoraSaida));
+                res = res.replace(/\{\{RESPONSAVEL\}\}/g, linha.responsavel == 'null' ? '' : linha.responsavel);
+                res = res.replace(/\{\{VALOR\}\}/g, linha.valor);
+                res = res.replace(/\{\{SITUACAO\}\}/g, _formataSituacao(linha.situacao));
                 final += res;
             }
             $('table.table tbody').html(final);
         }
 
-        function _renderMunicipios(data) {
+        function _renderPessoas(data) {
             var options = '<option value=""></option>';
-            data.forEach(function (municipio) {
-                options += '<option value="' + municipio.id + '">' + municipio.nome + '</option>';
+            data.forEach(function (pessoa) {
+                options += '<option value="' + pessoa.id + '">' + pessoa.nome + '</option>';
             });
-            $("#idMunicipios").html(options);
-        }
-
-        function _renderEstados(data) {
-            var options = '<option value=""></option>';
-            data.forEach(function (estado) {
-                options += '<option value="' + estado.id + '">' + estado.nome + '</option>';
-            });
-            $("#idEstados").html(options);
+            $("#idPessoas").html(options);
         }
 
         function _changeCampos(tipoPessoa) {
-            //var tipoPessoa = window.document.getElementById('tipoPessoa').value;
             var dataNascimento = window.document.getElementById('dataNascimento');
             var documento = window.document.getElementById('documento');
             if (tipoPessoa == '') {
@@ -218,7 +208,7 @@
     }
 
     $(function () {
-        window.ctrl = pessoasController();
+        window.ctrl = controlesController();
     });
 
 })();

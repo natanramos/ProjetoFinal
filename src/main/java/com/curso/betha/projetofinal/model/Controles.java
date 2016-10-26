@@ -1,5 +1,6 @@
 package com.curso.betha.projetofinal.model;
 
+import com.curso.betha.projetofinal.dao.PessoasDAO;
 import com.curso.betha.projetofinal.utils.Parseable;
 import com.curso.betha.projetofinal.utils.Utils;
 
@@ -122,8 +123,8 @@ public class Controles implements Parseable {
 
     @Override
     public String toString() {
-        return String.format("{\"id\":\"%s\",\"mensalista\":\"%s\",\"idPessoas\":\"%s\",\"placa\":\"%s\",\"marca\":\"%s\",\"modelo\":\"%s\",\"cor\":\"%s\",\"responsavel\":\"%s\",\"dataHoraEntrada\":\"%s\",\"dataHoraSaida\":\"%s\",\"situacao\":\"%s\",\"valor\":\"%s\"}",
-                this.id, this.mensalista, this.idPessoas, this.placa, this.marca, this.modelo, this.cor, this.responsavel, this.dataHoraEntrada, this.dataHoraSaida, this.situacao, this.valor);
+        return String.format("{\"id\":\"%s\",\"mensalista\":\"%s\",\"idPessoas\":\"%s\",\"placa\":\"%s\",\"marca\":\"%s\",\"modelo\":\"%s\",\"cor\":\"%s\",\"responsavel\":\"%s\",\"dataHoraEntrada\":\"%s\",\"dataHoraSaida\":\"%s\",\"situacao\":\"%s\",\"valor\":\"%s\",\"pessoa\":%s}",
+                this.id, this.mensalista, this.idPessoas, this.placa, this.marca, this.modelo, this.cor, this.responsavel, this.dataHoraEntrada, this.dataHoraSaida, this.situacao, this.valor, this.getPessoa(this.idPessoas));
     }
 
     @Override
@@ -140,5 +141,13 @@ public class Controles implements Parseable {
         this.dataHoraSaida = Utils.parseDateTime(dados.get("dataHoraSaida"));
         this.situacao = dados.get("situacao");
         this.valor = Utils.parseDouble(dados.get("valor"));
+    }
+
+    public String getPessoa(Long idPessoa) {
+        Pessoas pessoa = PessoasDAO.getPessoa(idPessoa);
+        if (pessoa != null) {
+            return pessoa.toString();
+        }
+        return "";
     }
 }

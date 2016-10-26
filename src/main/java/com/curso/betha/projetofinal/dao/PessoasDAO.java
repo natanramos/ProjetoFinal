@@ -180,7 +180,7 @@ public class PessoasDAO {
         }
     }
 
-    public Pessoas getPessoa(Long codigo) {
+    public static Pessoas getPessoa(Long codigo) {
         Pessoas pessoa = null;
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;

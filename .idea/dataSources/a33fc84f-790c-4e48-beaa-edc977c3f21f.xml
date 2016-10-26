@@ -14,8 +14,8 @@
     <schema id="4" parent="1" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>1463</introspection-state-number>
-      <introspection-timestamp>2016-10-12.16:16:54.574</introspection-timestamp>
+      <introspection-state-number>1634</introspection-state-number>
+      <introspection-timestamp>2016-10-25.23:05:50.794</introspection-timestamp>
     </schema>
     <schema id="5" parent="1" name="pg_catalog">
       <object-id>11</object-id>
@@ -70,7 +70,7 @@
     </table>
     <table id="19" parent="4" name="controles">
       <object-id>17400</object-id>
-      <state-number>1413</state-number>
+      <state-number>1634</state-number>
     </table>
     <table id="20" parent="4" name="debitos">
       <object-id>17419</object-id>
@@ -148,9 +148,9 @@
       <data-type>integer|0</data-type>
     </column>
     <column id="36" parent="19" name="placa">
-      <state-number>1407</state-number>
+      <state-number>1634</state-number>
       <mandatory>1</mandatory>
-      <data-type>varchar(6)|0</data-type>
+      <data-type>varchar(7)|0</data-type>
     </column>
     <column id="37" parent="19" name="marca">
       <state-number>1407</state-number>

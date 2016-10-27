@@ -110,7 +110,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Cadastro de pessoas</h4>
+              <h4 class="modal-title">Controles de estacionamento</h4>
             </div>
             <div class="modal-body">
               <form id="form" name="form" rule="cadastro">
@@ -167,30 +167,41 @@
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-lg-1 control-label" for="rua">Rua</label>
-                    <div class="col-md-8">
-                      <input id="rua" name="rua" type="text" maxlength="200" class="form-control" />
+                    <label class="col-lg-1 control-label" for="marca">Marca</label>
+                    <div class="col-md-5">
+                      <select id="marca" name="marca" form="form" class="form-control">
+                        <option value=""></option>
+                        <option value="VW">Volkswagen</option>
+                        <option value="GM">Chevrolet</option>
+                        <option value="AU">Audi</option>
+                        <option value="VV">Volvo</option>
+                        <option value="CT">Citroën</option>
+                        <option value="BM">BMW</option>
+                        <option value="DO">Dodge</option>
+                        <option value="FE">Ferrari</option>
+                        <option value="FO">Ford</option>
+                        <option value="FI">Fiat</option>
+                        <option value="HY">Hyundai</option>
+                        <option value="HO">Honda</option>
+                        <option value="OT">Outra</option>
+                      </select>
                     </div>
-                    <label class="col-lg-1 control-label" for="numero">Número</label>
-                    <div class="col-md-2">
-                      <input id="numero" name="numero" type="text" maxlength="20" class="form-control" />
+                    <label class="col-lg-1 control-label" for="modelo">Modelo</label>
+                    <div class="col-md-5">
+                      <input id="modelo" name="modelo" type="text" maxlength="100" class="form-control" />
                     </div>
                   </div>
                 </div>
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-lg-1 control-label" for="idMunicipios">Cidade</label>
-                    <div class="col-md-5">
-                      <select id="idMunicipios" name="idMunicipios" form="form" class="form-control">
-                        <option value=""></option>
-                      </select>
+                    <label class="col-lg-1 control-label" for="cor">Cor</label>
+                    <div class="col-md-4">
+                      <input id="cor" name="cor" type="text" maxlength="50" class="form-control" />
                     </div>
-                    <label class="col-lg-1 control-label" for="idEstados">Estado</label>
+                    <label class="col-lg-2 control-label" for="responsavel" style="text-align: right;">Responsável</label>
                     <div class="col-md-5">
-                      <select id="idEstados" name="idEstados" form="form" class="form-control">
-                        <option value=""></option>
-                      </select>
+                      <input id="responsavel" name="responsavel" type="text" maxlength="100" class="form-control" />
                     </div>
                   </div>
                 </div>

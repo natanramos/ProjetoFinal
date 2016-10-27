@@ -1,6 +1,3 @@
-import com.curso.betha.projetofinal.utils.Utils;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,7 +8,14 @@ public class Teste {
 
     public static void main(String args[]) {
 
-        System.out.println("Teste");
+        Date data = new Date(1477443986870L);
+
+        System.out.println(data);
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        System.out.println("");
+        System.out.println(format.format(data));
+
     }
 
 }

@@ -124,7 +124,7 @@ public class Controles implements Parseable {
     @Override
     public String toString() {
         return String.format("{\"id\":\"%s\",\"mensalista\":\"%s\",\"idPessoas\":\"%s\",\"placa\":\"%s\",\"marca\":\"%s\",\"modelo\":\"%s\",\"cor\":\"%s\",\"responsavel\":\"%s\",\"dataHoraEntrada\":\"%s\",\"dataHoraSaida\":\"%s\",\"situacao\":\"%s\",\"valor\":\"%s\",\"pessoa\":%s}",
-                this.id, this.mensalista, this.idPessoas, this.placa, this.marca, this.modelo, this.cor, this.responsavel, this.dataHoraEntrada, this.dataHoraSaida, this.situacao, this.valor, this.getPessoa(this.idPessoas));
+                this.id, this.mensalista, this.idPessoas, this.placa, this.marca, this.modelo, this.cor, this.responsavel, Utils.formataDataHora(this.dataHoraEntrada), Utils.formataDataHora(this.dataHoraSaida), this.situacao, this.valor, this.getPessoa(this.idPessoas));
     }
 
     @Override

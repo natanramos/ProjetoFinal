@@ -75,4 +75,9 @@ public final class Utils {
         texto = texto.replace(" ","").trim();
         return texto;
     }
+
+    public static String formataDataHora(Date data) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return format.format(data);
+    }
 }

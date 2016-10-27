@@ -52,7 +52,7 @@
         }
 
         function _adicionar() {
-            _preencheForm(new Pessoas());
+            _preencheForm(new Controles());
         }
 
         function _validaForm() {
@@ -98,13 +98,6 @@
             })
         }
 
-        function _formataData(data) {
-            if (data == 'null') {
-                return '';
-            }
-            return data.substr(8,2) + '/' + data.substr(5,2) + '/' + data.substr(0,4);
-        }
-
         function _formataSituacao(situacao) {
             if (situacao == 'A') {
                 return 'Aberto'
@@ -123,8 +116,8 @@
                 res = res.replace(/\{\{PESSOA\}\}/g, linha.pessoa.nome);
                 res = res.replace(/\{\{PLACA\}\}/g, linha.placa);
                 res = res.replace(/\{\{MODELO\}\}/g, linha.modelo == 'null' ? '' : linha.modelo);
-                res = res.replace(/\{\{DATA_HORA_ENTRADA\}\}/g, _formataData(linha.dataHoraEntrada));
-                res = res.replace(/\{\{DATA_HORA_SAIDA\}\}/g, _formataData(linha.dataHoraSaida));
+                res = res.replace(/\{\{DATA_HORA_ENTRADA\}\}/g, linha.dataHoraEntrada);
+                res = res.replace(/\{\{DATA_HORA_SAIDA\}\}/g, linha.dataHoraSaida);
                 res = res.replace(/\{\{RESPONSAVEL\}\}/g, linha.responsavel == 'null' ? '' : linha.responsavel);
                 res = res.replace(/\{\{VALOR\}\}/g, linha.valor);
                 res = res.replace(/\{\{SITUACAO\}\}/g, _formataSituacao(linha.situacao));

@@ -4,8 +4,8 @@ import com.curso.betha.projetofinal.model.Controles;
 import com.curso.betha.projetofinal.utils.Conexao;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -209,8 +209,8 @@ public class ControlesDAO {
                 controle.setModelo(rs.getString("modelo"));
                 controle.setCor(rs.getString("cor"));
                 controle.setResponsavel(rs.getString("responsavel"));
-                controle.setDataHoraEntrada(rs.getDate("data_hora_entrada"));
-                controle.setDataHoraSaida(rs.getDate("data_hora_saida"));
+                controle.setDataHoraEntrada(new java.util.Date(rs.getTimestamp("data_hora_entrada").getTime()));
+                controle.setDataHoraSaida(new java.util.Date(rs.getTimestamp("data_hora_saida").getTime()));
                 controle.setSituacao(rs.getString("situacao"));
                 controle.setValor(rs.getDouble("valor"));
             }
@@ -255,8 +255,8 @@ public class ControlesDAO {
                 controle.setModelo(rs.getString("modelo"));
                 controle.setCor(rs.getString("cor"));
                 controle.setResponsavel(rs.getString("responsavel"));
-                controle.setDataHoraEntrada(rs.getDate("data_hora_entrada"));
-                controle.setDataHoraSaida(rs.getDate("data_hora_saida"));
+                controle.setDataHoraEntrada(new java.util.Date(rs.getTimestamp("data_hora_entrada").getTime()));
+                controle.setDataHoraSaida(new java.util.Date(rs.getTimestamp("data_hora_saida").getTime()));
                 controle.setSituacao(rs.getString("situacao"));
                 controle.setValor(rs.getDouble("valor"));
                 lista.add(controle);

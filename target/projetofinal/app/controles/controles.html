@@ -34,6 +34,22 @@
     <script type="text/javascript" src="../../app/common/js/jquery.js"></script>
     <script type="text/javascript" src="../../app/common/js/jquery.inputmask.bundle.js"></script>
 
+    <script type="text/javascript">
+
+       $(document).ready(function(){
+
+         var valor = document.getElementById("valor");
+         var im = new Inputmask("9999.99");
+         im.mask(valor);
+
+         var placa = document.getElementById("placa");
+         var im = new Inputmask("aaa-9999");
+         im.mask(placa);
+
+       });
+
+    </script>
+
   </head>
 
   <body>
@@ -114,53 +130,47 @@
             </div>
             <div class="modal-body">
               <form id="form" name="form" rule="cadastro">
+
                 <input type="hidden" id="id" name="id">
-                <div class="row" style="margin-bottom: 15px;">
-                  <div class="form-group">
-                    <label class="col-md-1 control-label" for="nome">Nome</label>
-                    <div class="col-md-11">
-                      <input id="nome" name="nome" type="text" maxlength="200" class="form-control" />
-                    </div>
-                  </div>
-                </div>
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-md-3 control-label" style="text-align: right;" for="tipoPessoa">Tipo</label>
-                    <div class="col-md-2">
-                      <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control" onchange="ctrl.changeTipoPessoa()">
+                    <label class="col-md-1 control-label" for="idPessoas">Pessoa</label>
+                    <div class="col-md-7">
+                      <select id="idPessoas" name="idPessoas" form="form" class="form-control">
                         <option value=""></option>
-                        <option value="F" selected>Física</option>
-                        <option value="J">Jurídica</option>
                       </select>
                     </div>
-                    <div class="col-md-1">
-                    </div>
-                    <label class="col-md-2 control-label" style="text-align: right;" for="documento">CPF/CNPJ</label>
-                    <div class="col-md-3">
-                      <input id="documento" name="documento" type="text" class="form-control" required="true" disabled>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row" style="margin-bottom: 15px;">
-                  <div class="form-group">
-                    <label class="col-md-3 control-label" style="text-align: right;" for="dataNascimento">Data de nascimento</label>
-                    <div class="col-md-3">
-                      <input id="dataNascimento" name="dataNascimento" type="date" class="form-control" required="true" disabled>
-                    </div>
-                    <label class="col-md-2 control-label" style="text-align: right;" for="telefone">Telefone</label>
-                    <div class="col-md-3">
-                      <input id="telefone" name="telefone" type="text" class="form-control" required="true">
+                    <label class="col-md-2 control-label" for="mensalista" style="text-align: right;">Mensalista</label>
+                    <div class="col-md-2">
+                      <select id="mensalista" name="mensalista" form="form" class="form-control">
+                        <option value=""></option>
+                        <option value="S">Sim</option>
+                        <option value="N">Não</option>
+                      </select>
                     </div>
                   </div>
                 </div>
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-lg-1 control-label" for="email">Email</label>
-                    <div class="col-md-11">
-                      <input id="email" name="email" type="text" maxlength="100" class="form-control" />
+                    <label class="col-md-1 control-label" for="placa">Placa</label>
+                    <div class="col-md-2">
+                      <input id="placa" name="placa" type="text" class="form-control" />
+                    </div>
+                    <label class="col-md-1 control-label" for="situacao">Situação</label>
+                    <div class="col-md-2">
+                      <select id="situacao" name="situacao" form="form" class="form-control" readonly>
+                        <option value=""></option>
+                        <option value="A">Aberto</option>
+                        <option value="P">Pendente</option>
+                        <option value="E">Encerrado</option>
+                      </select>
+                    </div>
+                    <label class="col-md-1 control-label" for="valor">Valor</label>
+                    <div class="col-md-2">
+                      <!--<input id="valor" name="valor" type="number" step="0.1" class="form-control" />-->
+                      <input id="valor" name="valor" type="text" class="form-control" />
                     </div>
                   </div>
                 </div>
@@ -168,25 +178,43 @@
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
                     <label class="col-lg-1 control-label" for="marca">Marca</label>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                       <select id="marca" name="marca" form="form" class="form-control">
                         <option value=""></option>
-                        <option value="VW">Volkswagen</option>
-                        <option value="GM">Chevrolet</option>
                         <option value="AU">Audi</option>
-                        <option value="VV">Volvo</option>
-                        <option value="CT">Citroën</option>
                         <option value="BM">BMW</option>
+                        <option value="BT">Bentley</option>
+                        <option value="CH">Chery</option>
+                        <option value="CT">Citroën</option>
+                        <option value="GM">Chevrolet</option>
                         <option value="DO">Dodge</option>
                         <option value="FE">Ferrari</option>
                         <option value="FO">Ford</option>
                         <option value="FI">Fiat</option>
                         <option value="HY">Hyundai</option>
                         <option value="HO">Honda</option>
+                        <option value="JA">Jaguar</option>
+                        <option value="JE">Jeep</option>
+                        <option value="JC">JAC</option>
+                        <option value="KI">KIA</option>
+                        <option value="LI">Lifan</option>
+                        <option value="LE">Lexus</option>
+                        <option value="LA">Lamborghini</option>
+                        <option value="LR">Land Rover</option>
+                        <option value="MA">Maserati</option>
+                        <option value="MI">Mitsubishi</option>
+                        <option value="MB">Mercedes-Benz</option>
+                        <option value="NI">Nissan</option>
+                        <option value="PO">Porsche</option>
+                        <option value="PG">Peugeot</option>
+                        <option value="RE">Renault</option>
+                        <option value="TY">Toyota</option>
+                        <option value="VW">Volkswagen</option>
+                        <option value="VV">Volvo</option>
                         <option value="OT">Outra</option>
                       </select>
                     </div>
-                    <label class="col-lg-1 control-label" for="modelo">Modelo</label>
+                    <label class="col-lg-2 control-label" for="modelo" style="text-align: right;">Modelo</label>
                     <div class="col-md-5">
                       <input id="modelo" name="modelo" type="text" maxlength="100" class="form-control" />
                     </div>
@@ -202,6 +230,19 @@
                     <label class="col-lg-2 control-label" for="responsavel" style="text-align: right;">Responsável</label>
                     <div class="col-md-5">
                       <input id="responsavel" name="responsavel" type="text" maxlength="100" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" style="margin-bottom: 15px;">
+                  <div class="form-group">
+                    <label class="col-lg-3 control-label" for="dataHoraEntrada">Data/hora entrada</label>
+                    <div class="col-md-3">
+                      <input id="dataHoraEntrada" name="dataHoraEntrada" type="text" maxlength="50" class="form-control" />
+                    </div>
+                    <label class="col-lg-2 control-label" for="dataHoraSaida">Data/hora saída</label>
+                    <div class="col-md-3">
+                      <input id="dataHoraSaida" name="dataHoraSaida" type="text" maxlength="50" class="form-control" />
                     </div>
                   </div>
                 </div>

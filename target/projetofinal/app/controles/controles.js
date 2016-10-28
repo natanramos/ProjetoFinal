@@ -24,7 +24,6 @@
         var modeloLinhaTabela;
 
         function _carregar() {
-            //$('#tipoPessoa option[value=""]').attr({ selected : "selected" });
             $.getJSON('../../api/controles', function (data) {
                 _renderTable(data);
             });
@@ -53,24 +52,26 @@
 
         function _adicionar() {
             _preencheForm(new Controles());
+            $('select[name=situacao]').val('A');
         }
 
         function _validaForm() {
-            if (window.document.getElementById('nome').value.trim() == '') {
-                alert('Informe o nome!');
-                window.document.getElementById('nome').focus();
+            if (window.document.getElementById('mensalista').value.trim() == '') {
+                alert('Informe se a pessoa é um mensalista!');
+                window.document.getElementById('mensalista').focus();
                 return false;
-            } else if (window.document.getElementById('tipoPessoa').value.trim() == '') {
-                alert('Informe o tipo!');
-                window.document.getElementById('tipoPessoa').focus();
-                return false;
-            } else if (window.document.getElementById('documento').value.trim() == '') {
-                alert('Informe o CPF/CNPJ!');
-                window.document.getElementById('documento').focus();
-                return false;
-            } else if (window.document.getElementById('telefone').value.trim() == '') {
-                alert('Informe o telefone!');
-                window.document.getElementById('telefone').focus();
+            } else {
+                if (window.document.getElementById('mensalista').value.trim() == 'S') {
+                    if (window.document.getElementById('idPessoas').value.trim() == '') {
+                        alert('Informe a pessoa!');
+                        window.document.getElementById('idPessoas').focus();
+                        return false;
+                    }
+                }
+            }
+            if (window.document.getElementById('placa').value.trim() == '') {
+                alert('Informe a placa!');
+                window.document.getElementById('placa').focus();
                 return false;
             }
             return true;

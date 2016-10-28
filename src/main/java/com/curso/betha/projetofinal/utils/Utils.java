@@ -77,6 +77,9 @@ public final class Utils {
     }
 
     public static String formataDataHora(Date data) {
+        if (data == null) {
+            return "";
+        }
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return format.format(data);
     }

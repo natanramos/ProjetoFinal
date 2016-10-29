@@ -148,6 +148,6 @@ public class Controles implements Parseable {
         if (pessoa != null) {
             return pessoa.toString();
         }
-        return "";
+        return "{}";
     }
 }

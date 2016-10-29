@@ -116,6 +116,13 @@
             return documento;
         }
 
+        function _formataTelefone(telefone) {
+            if (telefone == 'null') {
+                return '';
+            }
+            return '(' + telefone.substr(0,2) + ') ' + telefone.substr(2,4) + '-' + telefone.substr(6,4);
+        }
+
         function _renderTable(data) {
             var final = '';
             modeloLinhaTabela = modeloLinhaTabela || $('table.table tbody').html();
@@ -127,7 +134,7 @@
                 res = res.replace(/\{\{TIPO_PESSOA\}\}/g, linha.tipoPessoa == 'J' ? 'Jurídica': 'Física');
                 res = res.replace(/\{\{DOCUMENTO\}\}/g, _formataDocumento(linha.tipoPessoa, linha.documento));
                 res = res.replace(/\{\{DATA_NASCIMENTO\}\}/g, _formataData(linha.dataNascimento));
-                res = res.replace(/\{\{TELEFONE\}\}/g, linha.telefone);
+                res = res.replace(/\{\{TELEFONE\}\}/g, _formataTelefone(linha.telefone));
                 res = res.replace(/\{\{EMAIL\}\}/g, linha.email == 'null' ? '' : linha.email);
                 final += res;
             }

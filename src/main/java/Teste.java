@@ -8,7 +8,7 @@ public class Teste {
 
     public static void main(String args[]) {
 
-        Date data = new Date(1477443986870L);
+        Date data = new Date();
 
         System.out.println(data);
 

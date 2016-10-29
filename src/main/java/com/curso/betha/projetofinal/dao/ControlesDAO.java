@@ -51,17 +51,9 @@ public class ControlesDAO {
             } else {
                 pstm.setNull(8, Types.VARCHAR);
             }
-            if (controle.getDataHoraEntrada() != null) {
-                pstm.setDate(9, new Date(controle.getDataHoraEntrada().getTime()));
-            } else {
-                pstm.setNull(9, Types.DATE);
-            }
-            if (controle.getDataHoraSaida() != null) {
-                pstm.setDate(10, new Date(controle.getDataHoraSaida().getTime()));
-            } else {
-                pstm.setNull(10, Types.DATE);
-            }
-            pstm.setString(11, controle.getSituacao());
+            pstm.setTimestamp(9, new java.sql.Timestamp(new java.util.Date().getTime()));
+            pstm.setNull(10, Types.DATE);
+            pstm.setString(11, "A");
             pstm.setDouble(12, controle.getValor());
 
             pstm.executeUpdate();
@@ -93,7 +85,7 @@ public class ControlesDAO {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         try {
-            String sql = "update public.controles set mensalista=?, id_pessoas=?, placa=?, marca=?, modelo=?, cor=?, responsavel=?, data_hora_entrada=?, data_hora_saida=?, situacao=?, valor=? where id = ?";
+            String sql = "update public.controles set mensalista=?, id_pessoas=?, placa=?, marca=?, modelo=?, cor=?, responsavel=?, valor=? where id = ?";
             pstm = conn.prepareStatement(sql);
 
             pstm.setString(1, controle.getMensalista());
@@ -123,19 +115,8 @@ public class ControlesDAO {
             } else {
                 pstm.setNull(7, Types.VARCHAR);
             }
-            if (controle.getDataHoraEntrada() != null) {
-                pstm.setDate(8, new Date(controle.getDataHoraEntrada().getTime()));
-            } else {
-                pstm.setNull(8, Types.DATE);
-            }
-            if (controle.getDataHoraSaida() != null) {
-                pstm.setDate(9, new Date(controle.getDataHoraSaida().getTime()));
-            } else {
-                pstm.setNull(9, Types.DATE);
-            }
-            pstm.setString(10, controle.getSituacao());
-            pstm.setDouble(11, controle.getValor());
-            pstm.setLong(12, controle.getId());
+            pstm.setDouble(8, controle.getValor());
+            pstm.setLong(9, controle.getId());
 
             pstm.executeUpdate();
 
@@ -160,6 +141,71 @@ public class ControlesDAO {
             }
         }
         return null;
+    }
+
+    public static void encerrar(Long codigo) {
+        Connection conn = Conexao.getConnection();
+        PreparedStatement pstm = null;
+        try {
+            String sql = "update public.controles set data_hora_saida=?, situacao=? where id = ?";
+            pstm = conn.prepareStatement(sql);
+
+            pstm.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
+            pstm.setString(2, "E");
+            pstm.setLong(3, codigo);
+
+            pstm.executeUpdate();
+
+        } catch(SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            if(pstm != null) {
+                try {
+                    pstm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public static void pendente(Long codigo) {
+        Connection conn = Conexao.getConnection();
+        PreparedStatement pstm = null;
+        try {
+            String sql = "update public.controles set situacao=? where id = ?";
+            pstm = conn.prepareStatement(sql);
+
+            pstm.setString(1, "P");
+            pstm.setLong(2, codigo);
+
+            pstm.executeUpdate();
+
+        } catch(SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            if(pstm != null) {
+                try {
+                    pstm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
     public static void excluir(Long codigo) {

@@ -41,7 +41,7 @@
             $('select[name=idPessoas]').val(registro.idPessoas);
             $('input[name=placa]').val(registro.placa);
             $('select[name=marca]').val(registro.marca);
-            $('input[name=modelo]').val(registro.modelo);
+            $('input[name=modelo]').val(registro.modelo == 'null' ? '' : registro.modelo);
             $('input[name=cor]').val(registro.cor == 'null' ? '' : registro.cor);
             $('input[name=responsavel]').val(registro.responsavel == 'null' ? '' : registro.responsavel);
             $('input[name=dataHoraEntrada]').val(registro.dataHoraEntrada);
@@ -53,6 +53,7 @@
         function _adicionar() {
             _preencheForm(new Controles());
             $('select[name=situacao]').val('A');
+            _changeCampos(false);
         }
 
         function _validaForm() {
@@ -67,11 +68,21 @@
                         window.document.getElementById('idPessoas').focus();
                         return false;
                     }
+                } else {
+                    if (window.document.getElementById('responsavel').value.trim() == '') {
+                        alert('Informe o responsável!');
+                        window.document.getElementById('responsavel').focus();
+                        return false;
+                    }
                 }
             }
             if (window.document.getElementById('placa').value.trim() == '') {
                 alert('Informe a placa!');
                 window.document.getElementById('placa').focus();
+                return false;
+            } else if (window.document.getElementById('valor').value.trim() == '') {
+                alert('Informe o valor!');
+                window.document.getElementById('valor').focus();
                 return false;
             }
             return true;
@@ -94,16 +105,40 @@
 
         function _editar(id) {
             $.getJSON('../../api/controles', 'id=' + id, function (data) {
-                _changeCampos(data.tipoPessoa);
                 _preencheForm(data);
+                _changeCampos(true);
             })
+        }
+
+        function _encerrar(id) {
+            $.post('../../api/controles/encerrar', {id: id} ,function () {
+                _carregar();
+            });
+        }
+
+        function _pendente(id) {
+            $.post('../../api/controles/pendente', {id: id} ,function () {
+                _carregar();
+            });
         }
 
         function _formataSituacao(situacao) {
             if (situacao == 'A') {
-                return 'Aberto'
+                return 'Aberto';
+            } else if (situacao == 'P') {
+                return 'Pendente';
+            } else if (situacao == 'E') {
+                return 'Encerrado';
             }
             return '';
+        }
+
+        function _formataPlaca(placa) {
+            return placa.substr(0,3) + '-' + placa.substr(3,4);
+        }
+
+        function _definirAcoes() {
+            return "Teste";
         }
 
         function _renderTable(data) {
@@ -114,14 +149,15 @@
                 var linha = data[i];
                 res = res.replace(/\{\{ID\}\}/g, linha.id);
                 res = res.replace(/\{\{MENSALISTA\}\}/g, linha.mensalista == 'S' ? 'Sim': 'Não');
-                res = res.replace(/\{\{PESSOA\}\}/g, linha.pessoa.nome);
-                res = res.replace(/\{\{PLACA\}\}/g, linha.placa);
+                res = res.replace(/\{\{PESSOA\}\}/g, !linha.pessoa.nome ? '' : linha.pessoa.nome);
+                res = res.replace(/\{\{PLACA\}\}/g, _formataPlaca(linha.placa));
                 res = res.replace(/\{\{MODELO\}\}/g, linha.modelo == 'null' ? '' : linha.modelo);
                 res = res.replace(/\{\{DATA_HORA_ENTRADA\}\}/g, linha.dataHoraEntrada);
                 res = res.replace(/\{\{DATA_HORA_SAIDA\}\}/g, linha.dataHoraSaida);
                 res = res.replace(/\{\{RESPONSAVEL\}\}/g, linha.responsavel == 'null' ? '' : linha.responsavel);
                 res = res.replace(/\{\{VALOR\}\}/g, linha.valor);
                 res = res.replace(/\{\{SITUACAO\}\}/g, _formataSituacao(linha.situacao));
+                res = res.replace(/\{\{ACOES\}\}/g, _definirAcoes());
                 final += res;
             }
             $('table.table tbody').html(final);
@@ -135,61 +171,25 @@
             $("#idPessoas").html(options);
         }
 
-        function _changeCampos(tipoPessoa) {
-            var dataNascimento = window.document.getElementById('dataNascimento');
-            var documento = window.document.getElementById('documento');
-            if (tipoPessoa == '') {
-                dataNascimento.value = '';
-                documento.value = '';
-                dataNascimento.disabled = true;
-                documento.disabled = true;
-                return;
-            }
-            if (tipoPessoa == 'F') {
-                dataNascimento.disabled = false;
-                documento.disabled = false;
-                var im = new Inputmask("999.999.999-99");
-                im.mask(documento);
-                return;
-            }
-            if (tipoPessoa == 'J') {
-                dataNascimento.disabled = true;
-                documento.disabled = false;
-                var im = new Inputmask("99.999.999/9999-99");
-                im.mask(documento);
-                return;
-            }
-        }
-
-        function _changeTipoPessoa() {
-            var tipoPessoa = window.document.getElementById('tipoPessoa').value;
-            var dataNascimento = window.document.getElementById('dataNascimento');
-            var documento = window.document.getElementById('documento');
-            if (tipoPessoa == '') {
-                dataNascimento.value = '';
-                documento.value = '';
-                dataNascimento.disabled = true;
-                documento.disabled = true;
-                return;
-            }
-            if (tipoPessoa == 'F') {
-                dataNascimento.disabled = false;
-                documento.disabled = false;
-                dataNascimento.value = '';
-                documento.value = '';
-                var im = new Inputmask("999.999.999-99");
-                im.mask(documento);
-                return;
-            }
-            if (tipoPessoa == 'J') {
-                dataNascimento.disabled = true;
-                documento.disabled = false;
-                dataNascimento.value = '';
-                documento.value = '';
-                var im = new Inputmask("99.999.999/9999-99");
-                im.mask(documento);
-                return;
-            }
+        function _changeCampos(habilita) {
+            var pessoa = window.document.getElementById('idPessoas');
+            var mensalista = window.document.getElementById('mensalista');
+            var placa = window.document.getElementById('placa');
+            var valor = window.document.getElementById('valor');
+            var marca = window.document.getElementById('marca');
+            var modelo = window.document.getElementById('modelo');
+            var cor = window.document.getElementById('cor');
+            var responsavel = window.document.getElementById('responsavel');
+            var salvar = window.document.getElementById('btnSalvar');
+            pessoa.disabled = habilita;
+            mensalista.disabled = habilita;
+            placa.disabled = habilita;
+            valor.disabled = habilita;
+            marca.disabled = habilita;
+            modelo.disabled = habilita;
+            cor.disabled = habilita;
+            responsavel.disabled = habilita;
+            salvar.disabled = habilita;
         }
 
         return {
@@ -197,7 +197,8 @@
             edit: _editar,
             save: _salvar,
             remove: _remover,
-            changeTipoPessoa: _changeTipoPessoa
+            encerrar: _encerrar,
+            pendente: _pendente
         }
     }
 

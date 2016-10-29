@@ -15,7 +15,7 @@ import java.io.IOException;
  * Created by NatanRamos on 25/10/2016.
  */
 
-@WebServlet(urlPatterns = {"api/controles", "api/controles/remover"})
+@WebServlet(urlPatterns = {"api/controles", "api/controles/remover", "api/controles/encerrar", "api/controles/pendente"})
 public class ControlesServlet extends HttpServlet {
 
     private final ControlesDAO dao = new ControlesDAO();
@@ -51,6 +51,10 @@ public class ControlesServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getRequestURI().endsWith("/remover") && "POST".equals(req.getMethod())) {
             dao.excluir(Utils.parseLong(req.getParameter("id")));
+        } else if (req.getRequestURI().endsWith("/encerrar") && "POST".equals(req.getMethod())) {
+            dao.encerrar(Utils.parseLong(req.getParameter("id")));
+        } else if (req.getRequestURI().endsWith("/pendente") && "POST".equals(req.getMethod())) {
+            dao.pendente(Utils.parseLong(req.getParameter("id")));
         } else {
             super.service(req, resp);
         }

@@ -34,22 +34,6 @@
     <script type="text/javascript" src="../../app/common/js/jquery.js"></script>
     <script type="text/javascript" src="../../app/common/js/jquery.inputmask.bundle.js"></script>
 
-    <script type="text/javascript">
-
-       $(document).ready(function(){
-
-         var valor = document.getElementById("valor");
-         var im = new Inputmask("9999.99");
-         im.mask(valor);
-
-         var placa = document.getElementById("placa");
-         var im = new Inputmask("aaa-9999");
-         im.mask(placa);
-
-       });
-
-    </script>
-
   </head>
 
   <body>
@@ -112,8 +96,11 @@
             <td>{{VALOR}}</td>
             <td>{{SITUACAO}}</td>
             <td>
-              <a style="padding: 3px;" title="Editar" href="#" onclick="ctrl.edit({{ID}})" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></a>
+              {{ACOES}}
+              <!--<a style="padding: 3px;" title="Editar" href="#" onclick="ctrl.edit({{ID}})" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></a>
               <a style="padding: 3px;" title="Excluir" href="#" onclick="ctrl.remove({{ID}})"><span class="glyphicon glyphicon-trash"></span></a>
+              <a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar({{ID}})"><span class="glyphicon glyphicon-stop"></span></a>
+              <a style="padding: 3px;" title="Tornar pendente" href="#" onclick="ctrl.pendente({{ID}})"><span class="glyphicon glyphicon-ban-circle"></span></a>-->
             </td>
           </tr>
         </tbody>
@@ -160,7 +147,7 @@
                     </div>
                     <label class="col-md-1 control-label" for="situacao">Situação</label>
                     <div class="col-md-2">
-                      <select id="situacao" name="situacao" form="form" class="form-control" readonly>
+                      <select id="situacao" name="situacao" form="form" class="form-control" disabled>
                         <option value=""></option>
                         <option value="A">Aberto</option>
                         <option value="P">Pendente</option>
@@ -169,8 +156,7 @@
                     </div>
                     <label class="col-md-1 control-label" for="valor">Valor</label>
                     <div class="col-md-2">
-                      <!--<input id="valor" name="valor" type="number" step="0.1" class="form-control" />-->
-                      <input id="valor" name="valor" type="text" class="form-control" />
+                      <input id="valor" name="valor" type="text" maxlength="7" class="form-control" />
                     </div>
                   </div>
                 </div>
@@ -238,11 +224,11 @@
                   <div class="form-group">
                     <label class="col-lg-3 control-label" for="dataHoraEntrada">Data/hora entrada</label>
                     <div class="col-md-3">
-                      <input id="dataHoraEntrada" name="dataHoraEntrada" type="text" maxlength="50" class="form-control" />
+                      <input id="dataHoraEntrada" name="dataHoraEntrada" type="text" class="form-control" disabled/>
                     </div>
                     <label class="col-lg-2 control-label" for="dataHoraSaida">Data/hora saída</label>
                     <div class="col-md-3">
-                      <input id="dataHoraSaida" name="dataHoraSaida" type="text" maxlength="50" class="form-control" />
+                      <input id="dataHoraSaida" name="dataHoraSaida" type="text"class="form-control" disabled/>
                     </div>
                   </div>
                 </div>
@@ -263,11 +249,26 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../app/common/assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../../app/common/bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../app/common/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <script type="text/javascript">
+
+      $(document).ready(function(){
+
+        var placa = document.getElementById("placa");
+        var im = new Inputmask("aaa-9999");
+        im.mask(placa);
+
+        $('#valor').mask("####0.00", {reverse: true});
+
+      });
+
+    </script>
 
     <script src="../../app/controles/controles.js"></script>
 

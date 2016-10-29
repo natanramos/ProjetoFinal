@@ -52,7 +52,7 @@ public class ControlesServlet extends HttpServlet {
         if (req.getRequestURI().endsWith("/remover") && "POST".equals(req.getMethod())) {
             dao.excluir(Utils.parseLong(req.getParameter("id")));
         } else if (req.getRequestURI().endsWith("/encerrar") && "POST".equals(req.getMethod())) {
-            dao.encerrar(Utils.parseLong(req.getParameter("id")));
+            dao.encerrar(Utils.parseLong(req.getParameter("id")), req.getParameter("situacao"));
         } else if (req.getRequestURI().endsWith("/pendente") && "POST".equals(req.getMethod())) {
             dao.pendente(Utils.parseLong(req.getParameter("id")));
         } else {

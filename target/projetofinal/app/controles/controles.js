@@ -110,8 +110,8 @@
             })
         }
 
-        function _encerrar(id) {
-            $.post('../../api/controles/encerrar', {id: id} ,function () {
+        function _encerrar(id, situacao) {
+            $.post('../../api/controles/encerrar', {id: id, situacao: situacao} ,function () {
                 _carregar();
             });
         }
@@ -137,8 +137,20 @@
             return placa.substr(0,3) + '-' + placa.substr(3,4);
         }
 
-        function _definirAcoes() {
-            return "Teste";
+        function _definirAcoes(id, mensalista, situacao) {
+            var retorno = '<a style="padding: 3px;" title="Editar" href="#" onclick="ctrl.edit('+id+')" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></a>'
+            if (situacao == 'A') {
+                retorno += '<a style="padding: 3px;" title="Excluir" href="#" onclick="ctrl.remove('+id+')"><span class="glyphicon glyphicon-trash"></span></a>';
+                /*retorno += '<a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar('+id+','+situacao+')"><span class="glyphicon glyphicon-stop"></span></a>';*/
+                retorno += "<a style='padding: 3px;' title='Encerrar' href='#' onclick='ctrl.encerrar("+id+","+situacao+")'><span class='glyphicon glyphicon-stop'></span></a>";
+            }
+            if (mensalista == 'N' && situacao == 'A') {
+                retorno += '<a style="padding: 3px;" title="Tornar pendente" href="#" onclick="ctrl.pendente('+id+')"><span class="glyphicon glyphicon-ban-circle"></span></a>';
+            }
+            if (mensalista == 'N' && situacao == 'P') {
+                retorno += '<a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar('+id+','+situacao+')"><span class="glyphicon glyphicon-stop"></span></a>';
+            }
+            return retorno;
         }
 
         function _renderTable(data) {
@@ -157,7 +169,7 @@
                 res = res.replace(/\{\{RESPONSAVEL\}\}/g, linha.responsavel == 'null' ? '' : linha.responsavel);
                 res = res.replace(/\{\{VALOR\}\}/g, linha.valor);
                 res = res.replace(/\{\{SITUACAO\}\}/g, _formataSituacao(linha.situacao));
-                res = res.replace(/\{\{ACOES\}\}/g, _definirAcoes());
+                res = res.replace(/\{\{ACOES\}\}/g, _definirAcoes(linha.id, linha.mensalista, linha.situacao));
                 final += res;
             }
             $('table.table tbody').html(final);

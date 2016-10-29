@@ -143,18 +143,28 @@ public class ControlesDAO {
         return null;
     }
 
-    public static void encerrar(Long codigo) {
+    public static void encerrar(Long codigo, String situacao) {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         try {
-            String sql = "update public.controles set data_hora_saida=?, situacao=? where id = ?";
-            pstm = conn.prepareStatement(sql);
+            if (!"P".equals(situacao)) {
+                String sql = "update public.controles set data_hora_saida=?, situacao=? where id = ?";
+                pstm = conn.prepareStatement(sql);
 
-            pstm.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
-            pstm.setString(2, "E");
-            pstm.setLong(3, codigo);
+                pstm.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
+                pstm.setString(2, "E");
+                pstm.setLong(3, codigo);
 
-            pstm.executeUpdate();
+                pstm.executeUpdate();
+            } else {
+                String sql = "update public.controles set situacao=? where id = ?";
+                pstm = conn.prepareStatement(sql);
+
+                pstm.setString(1, "E");
+                pstm.setLong(2, codigo);
+
+                pstm.executeUpdate();
+            }
 
         } catch(SQLException e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
@@ -180,11 +190,12 @@ public class ControlesDAO {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         try {
-            String sql = "update public.controles set situacao=? where id = ?";
+            String sql = "update public.controles set data_hora_saida=?, situacao=? where id = ?";
             pstm = conn.prepareStatement(sql);
 
-            pstm.setString(1, "P");
-            pstm.setLong(2, codigo);
+            pstm.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
+            pstm.setString(2, "P");
+            pstm.setLong(3, codigo);
 
             pstm.executeUpdate();
 

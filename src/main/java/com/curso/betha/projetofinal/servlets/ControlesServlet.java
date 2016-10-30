@@ -30,6 +30,9 @@ public class ControlesServlet extends HttpServlet {
                 resp.setContentType("application/json");
                 resp.getWriter().append(controle.toString());
             }
+        }else if (Utils.isNotEmpty(req.getParameter("situacao"))) {
+            resp.setContentType("application/json");
+            resp.getWriter().append(dao.getControles(req.getParameter("situacao")).toString());
         } else {
             resp.setContentType("application/json");
             resp.getWriter().append(dao.getControles().toString());

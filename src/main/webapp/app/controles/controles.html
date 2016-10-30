@@ -67,7 +67,23 @@
 
     <div class="container" style="width: 1500px;">
       <table class="table">
-        <caption style="font-size: 22px;">Controles <button id="btnAdicionar" onclick="ctrl.add()" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar</button></caption>
+        <caption style="font-size: 22px; margin-bottom: 20px;">Controles
+            <button id="btnAdicionar" onclick="ctrl.add()" style="margin-left: 5px;" data-toggle="modal" data-target="#myModal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Adicionar</button>
+            <div class="pull-right">
+                <button id="btnPesquisar" onclick="ctrl.pesquisar()" style="margin-left: 5px;" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
+            </div>
+            <div class="pull-right" style="margin-right: 10px;">
+                <select id="situacaoPesquisa" name="situacaoPesquisa" form="form" class="form-control">
+                    <option value="" selected></option>
+                    <option value="A">Aberto</option>
+                    <option value="P">Pendente</option>
+                    <option value="E">Encerrado</option>
+                </select>
+            </div>
+            <div class="pull-right" style="margin-right: 10px;">
+                <label for="situacaoPesquisa">Situação</label>
+            </div>
+        </caption>
         <thead>
           <tr>
             <th>#</th>
@@ -97,10 +113,6 @@
             <td>{{SITUACAO}}</td>
             <td>
               {{ACOES}}
-              <!--<a style="padding: 3px;" title="Editar" href="#" onclick="ctrl.edit({{ID}})" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></a>
-              <a style="padding: 3px;" title="Excluir" href="#" onclick="ctrl.remove({{ID}})"><span class="glyphicon glyphicon-trash"></span></a>
-              <a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar({{ID}})"><span class="glyphicon glyphicon-stop"></span></a>
-              <a style="padding: 3px;" title="Tornar pendente" href="#" onclick="ctrl.pendente({{ID}})"><span class="glyphicon glyphicon-ban-circle"></span></a>-->
             </td>
           </tr>
         </tbody>
@@ -156,7 +168,7 @@
                     </div>
                     <label class="col-md-1 control-label" for="valor">Valor</label>
                     <div class="col-md-2">
-                      <input id="valor" name="valor" type="text" maxlength="7" class="form-control" />
+                      <input id="valor" name="valor" type="text" maxlength="7" class="form-control" disabled/>
                     </div>
                   </div>
                 </div>

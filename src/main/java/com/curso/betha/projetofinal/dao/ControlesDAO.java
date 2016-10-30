@@ -54,7 +54,7 @@ public class ControlesDAO {
             pstm.setTimestamp(9, new java.sql.Timestamp(new java.util.Date().getTime()));
             pstm.setNull(10, Types.DATE);
             pstm.setString(11, "A");
-            pstm.setDouble(12, controle.getValor());
+            pstm.setDouble(12, 0.00);
 
             pstm.executeUpdate();
 
@@ -85,7 +85,7 @@ public class ControlesDAO {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         try {
-            String sql = "update public.controles set mensalista=?, id_pessoas=?, placa=?, marca=?, modelo=?, cor=?, responsavel=?, valor=? where id = ?";
+            String sql = "update public.controles set mensalista=?, id_pessoas=?, placa=?, marca=?, modelo=?, cor=?, responsavel=? where id = ?";
             pstm = conn.prepareStatement(sql);
 
             pstm.setString(1, controle.getMensalista());
@@ -115,8 +115,7 @@ public class ControlesDAO {
             } else {
                 pstm.setNull(7, Types.VARCHAR);
             }
-            pstm.setDouble(8, controle.getValor());
-            pstm.setLong(9, controle.getId());
+            pstm.setLong(8, controle.getId());
 
             pstm.executeUpdate();
 
@@ -148,12 +147,20 @@ public class ControlesDAO {
         PreparedStatement pstm = null;
         try {
             if (!"P".equals(situacao)) {
-                String sql = "update public.controles set data_hora_saida=?, situacao=? where id = ?";
+
+                java.util.Date dataHoraFinal = new java.util.Date();
+
+                Controles controle = ControlesDAO.getControle(codigo);
+
+                Double valor = Utils.calcularValor(controle.getDataHoraEntrada(), dataHoraFinal);
+
+                String sql = "update public.controles set data_hora_saida=?, situacao=?, valor=? where id = ?";
                 pstm = conn.prepareStatement(sql);
 
-                pstm.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
+                pstm.setTimestamp(1, new java.sql.Timestamp(dataHoraFinal.getTime()));
                 pstm.setString(2, "E");
-                pstm.setLong(3, codigo);
+                pstm.setDouble(3, valor);
+                pstm.setLong(4, codigo);
 
                 pstm.executeUpdate();
             } else {
@@ -190,12 +197,20 @@ public class ControlesDAO {
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
         try {
-            String sql = "update public.controles set data_hora_saida=?, situacao=? where id = ?";
+
+            java.util.Date dataHoraFinal = new java.util.Date();
+
+            Controles controle = ControlesDAO.getControle(codigo);
+
+            Double valor = Utils.calcularValor(controle.getDataHoraEntrada(), dataHoraFinal);
+
+            String sql = "update public.controles set data_hora_saida=?, situacao=?, valor=? where id = ?";
             pstm = conn.prepareStatement(sql);
 
-            pstm.setTimestamp(1, new java.sql.Timestamp(new java.util.Date().getTime()));
+            pstm.setTimestamp(1, new java.sql.Timestamp(dataHoraFinal.getTime()));
             pstm.setString(2, "P");
-            pstm.setLong(3, codigo);
+            pstm.setDouble(3, valor);
+            pstm.setLong(4, codigo);
 
             pstm.executeUpdate();
 
@@ -247,7 +262,7 @@ public class ControlesDAO {
         }
     }
 
-    public Controles getControle(Long codigo) {
+    public static Controles getControle(Long codigo) {
         Controles controle = null;
         Connection conn = Conexao.getConnection();
         PreparedStatement pstm = null;
@@ -306,6 +321,57 @@ public class ControlesDAO {
         try {
             String sql = "select id, mensalista, id_pessoas, placa, marca, modelo, cor, responsavel, data_hora_entrada, data_hora_saida, situacao, valor from public.controles order by controles.id";
             pstm = conn.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while(rs.next()) {
+                Controles controle = new Controles();
+                controle.setId(rs.getLong("id"));
+                controle.setMensalista(rs.getString("mensalista"));
+                controle.setIdPessoas(rs.getLong("id_pessoas"));
+                controle.setPlaca(rs.getString("placa"));
+                controle.setMarca(rs.getString("marca"));
+                controle.setModelo(rs.getString("modelo"));
+                controle.setCor(rs.getString("cor"));
+                controle.setResponsavel(rs.getString("responsavel"));
+                if (rs.getTimestamp("data_hora_entrada") != null) {
+                    controle.setDataHoraEntrada(new java.util.Date(rs.getTimestamp("data_hora_entrada").getTime()));
+                }
+                if (rs.getTimestamp("data_hora_saida") != null) {
+                    controle.setDataHoraSaida(new java.util.Date(rs.getTimestamp("data_hora_saida").getTime()));
+                }
+                controle.setSituacao(rs.getString("situacao"));
+                controle.setValor(rs.getDouble("valor"));
+                lista.add(controle);
+            }
+        } catch(SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            if(pstm != null) {
+                try {
+                    pstm.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lista;
+    }
+
+    public static List<Controles> getControles(String situacao) {
+        List<Controles> lista = new ArrayList<Controles>();
+        Connection conn = Conexao.getConnection();
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select id, mensalista, id_pessoas, placa, marca, modelo, cor, responsavel, data_hora_entrada, data_hora_saida, situacao, valor from public.controles where situacao=? order by controles.id";
+            pstm = conn.prepareStatement(sql);
+            pstm.setString(1, situacao);
             rs = pstm.executeQuery();
             while(rs.next()) {
                 Controles controle = new Controles();

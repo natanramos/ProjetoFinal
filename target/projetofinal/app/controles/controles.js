@@ -80,10 +80,6 @@
                 alert('Informe a placa!');
                 window.document.getElementById('placa').focus();
                 return false;
-            } else if (window.document.getElementById('valor').value.trim() == '') {
-                alert('Informe o valor!');
-                window.document.getElementById('valor').focus();
-                return false;
             }
             return true;
         }
@@ -107,6 +103,17 @@
             $.getJSON('../../api/controles', 'id=' + id, function (data) {
                 _preencheForm(data);
                 _changeCampos(true);
+            })
+        }
+
+        function _pesquisar() {
+            var situacao = window.document.getElementById('situacaoPesquisa').value;
+            if (situacao.trim() == '') {
+                _carregar();
+                return;
+            }
+            $.getJSON('../../api/controles', 'situacao=' + situacao, function (data) {
+                _renderTable(data);
             })
         }
 
@@ -141,14 +148,13 @@
             var retorno = '<a style="padding: 3px;" title="Editar" href="#" onclick="ctrl.edit('+id+')" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span></a>'
             if (situacao == 'A') {
                 retorno += '<a style="padding: 3px;" title="Excluir" href="#" onclick="ctrl.remove('+id+')"><span class="glyphicon glyphicon-trash"></span></a>';
-                /*retorno += '<a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar('+id+','+situacao+')"><span class="glyphicon glyphicon-stop"></span></a>';*/
-                retorno += "<a style='padding: 3px;' title='Encerrar' href='#' onclick='ctrl.encerrar("+id+","+situacao+")'><span class='glyphicon glyphicon-stop'></span></a>";
+                retorno += '<a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar('+id+',\''+situacao+'\')"><span class="glyphicon glyphicon-stop"></span></a>';
             }
             if (mensalista == 'N' && situacao == 'A') {
                 retorno += '<a style="padding: 3px;" title="Tornar pendente" href="#" onclick="ctrl.pendente('+id+')"><span class="glyphicon glyphicon-ban-circle"></span></a>';
             }
             if (mensalista == 'N' && situacao == 'P') {
-                retorno += '<a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar('+id+','+situacao+')"><span class="glyphicon glyphicon-stop"></span></a>';
+                retorno += '<a style="padding: 3px;" title="Encerrar" href="#" onclick="ctrl.encerrar('+id+',\''+situacao+'\')"><span class="glyphicon glyphicon-stop"></span></a>';
             }
             return retorno;
         }
@@ -187,7 +193,6 @@
             var pessoa = window.document.getElementById('idPessoas');
             var mensalista = window.document.getElementById('mensalista');
             var placa = window.document.getElementById('placa');
-            var valor = window.document.getElementById('valor');
             var marca = window.document.getElementById('marca');
             var modelo = window.document.getElementById('modelo');
             var cor = window.document.getElementById('cor');
@@ -196,7 +201,6 @@
             pessoa.disabled = habilita;
             mensalista.disabled = habilita;
             placa.disabled = habilita;
-            valor.disabled = habilita;
             marca.disabled = habilita;
             modelo.disabled = habilita;
             cor.disabled = habilita;
@@ -210,7 +214,8 @@
             save: _salvar,
             remove: _remover,
             encerrar: _encerrar,
-            pendente: _pendente
+            pendente: _pendente,
+            pesquisar: _pesquisar
         }
     }
 

@@ -1,7 +1,6 @@
 package com.curso.betha.projetofinal.utils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -82,5 +81,32 @@ public final class Utils {
         }
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         return format.format(data);
+    }
+
+    public static Double calcularValor(Date dataHoraInicial, Date dataHoraFinal) {
+
+        Double valor = 0.00;
+        Double valorHora = 1.75;
+
+        long diferencaHoras = (dataHoraFinal.getTime() - dataHoraInicial.getTime()) / (1000*60*60);
+        long diferencaMinutos = (dataHoraFinal.getTime() - dataHoraInicial.getTime()) / (1000*60);
+
+        if (diferencaHoras > 0) {
+            valor += valorHora * diferencaHoras;
+            if (diferencaMinutos > 0) {
+                Double percentagem = Double.valueOf(diferencaMinutos) / 60;
+                percentagem = percentagem - diferencaHoras;
+                Double valorMinutos = valorHora * percentagem;
+                valor += valorMinutos;
+            }
+        } else {
+            if (diferencaMinutos > 0) {
+                Double percentagem = Double.valueOf(diferencaMinutos) / 60;
+                Double valorMinutos = valorHora * percentagem;
+                valor += valorMinutos;
+            }
+        }
+
+        return valor;
     }
 }

@@ -54,37 +54,33 @@
         }
 
         function _adicionar() {
+            window.document.getElementById('btnSalvar').disabled = true;
             _preencheForm(new Pessoas());
         }
 
         function _validaForm() {
+            var salvar = window.document.getElementById('btnSalvar');
             if (window.document.getElementById('nome').value.trim() == '') {
-                alert('Informe o nome!');
-                window.document.getElementById('nome').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('tipoPessoa').value.trim() == '') {
-                alert('Informe o tipo!');
-                window.document.getElementById('tipoPessoa').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('documento').value.trim() == '') {
-                alert('Informe o CPF/CNPJ!');
-                window.document.getElementById('documento').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('telefone').value.trim() == '') {
-                alert('Informe o telefone!');
-                window.document.getElementById('telefone').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             }
-            return true;
+            salvar.disabled = false;
         }
 
         function _salvar() {
-            if (_validaForm()) {
-                $.post('../../api/pessoas', $('form[rule=cadastro]').serialize(), function () {
-                    $('#myModal').modal('hide');
-                    _carregar();
-                });
-            }
+            $.post('../../api/pessoas', $('form[rule=cadastro]').serialize(), function () {
+                $('#myModal').modal('hide');
+                _carregar();
+            });
         }
 
         function _remover(id) {
@@ -97,6 +93,7 @@
             $.getJSON('../../api/pessoas', 'id=' + id, function (data) {
                 _changeCampos(data.tipoPessoa);
                 _preencheForm(data);
+                window.document.getElementById('btnSalvar').disabled = false;
             })
         }
 
@@ -219,7 +216,8 @@
             edit: _editar,
             save: _salvar,
             remove: _remover,
-            changeTipoPessoa: _changeTipoPessoa
+            changeTipoPessoa: _changeTipoPessoa,
+            validaForm: _validaForm
         }
     }
 

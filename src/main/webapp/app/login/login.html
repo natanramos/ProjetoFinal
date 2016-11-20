@@ -17,9 +17,9 @@
                 <h3 class="form-signin-heading">Seja bem vindo!</h3>
                 <hr class="colorgraph"><br>
                 
-                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário" required="true" autofocus="true" maxlength="50"/>
-                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="true" maxlength="20"/>
-                <button id="btnEntrar" type="button" class="btn btn-lg btn-primary btn-block">Entrar</button>
+                <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuário" required="true" autofocus="true" maxlength="50" onchange="ctrl.validaForm()"/>
+                <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required="true" maxlength="20" onchange="ctrl.validaForm()"/>
+                <button id="btnEntrar" type="button" class="btn btn-lg btn-primary btn-block" disabled>Entrar</button>
             </form>
         </div>
     </div>

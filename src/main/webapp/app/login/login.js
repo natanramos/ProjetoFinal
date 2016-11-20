@@ -14,8 +14,21 @@
             });
         }
 
+        function _validaForm() {
+            var entrar = window.document.getElementById('btnEntrar');
+            if (window.document.getElementById('usuario').value.trim() == '') {
+                entrar.disabled = true;
+                return;
+            } else if (window.document.getElementById('senha').value.trim() == '') {
+                entrar.disabled = true;
+                return;
+            }
+            entrar.disabled = false;
+        }
+
         return {
-            entrar: _entrar
+            entrar: _entrar,
+            validaForm: _validaForm
         }
     }
 

@@ -35,6 +35,7 @@
         }
 
         function _adicionar() {
+            window.document.getElementById('btnSalvar').disabled = true;
             _preencheForm(new Usuarios());
             $.get('../../api/utilitarios/dataAtual', function (data) {
                 $('input[name=dataCadastro]').val(data);
@@ -42,29 +43,25 @@
         }
 
         function _validaForm() {
+            var salvar = window.document.getElementById('btnSalvar');
             if (window.document.getElementById('nome').value.trim() == '') {
-                alert('Informe o nome!');
-                window.document.getElementById('nome').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('login').value.trim() == '') {
-                alert('Informe o login!');
-                window.document.getElementById('login').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('senha').value.trim() == '') {
-                alert('Informe a senha!');
-                window.document.getElementById('senha').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             }
-            return true;
+            salvar.disabled = false;
         }
 
         function _salvar() {
-            if (_validaForm()) {
-                $.post('../../api/usuarios', $('form[rule=cadastro]').serialize(), function () {
-                    $('#myModal').modal('hide');
-                    _carregar();
-                });
-            }
+            $.post('../../api/usuarios', $('form[rule=cadastro]').serialize(), function () {
+                $('#myModal').modal('hide');
+                _carregar();
+            });
         }
 
         function _remover(id) {
@@ -76,6 +73,7 @@
         function _editar(id) {
             $.getJSON('../../api/usuarios', 'id=' + id, function (data) {
                 _preencheForm(data);
+                window.document.getElementById('btnSalvar').disabled = false;
             })
         }
 
@@ -102,7 +100,8 @@
             add: _adicionar,
             edit: _editar,
             save: _salvar,
-            remove: _remover
+            remove: _remover,
+            validaForm: _validaForm
         }
     }
 

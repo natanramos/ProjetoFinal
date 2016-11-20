@@ -51,46 +51,42 @@
         }
 
         function _adicionar() {
+            window.document.getElementById('btnSalvar').disabled = true;
             _preencheForm(new Controles());
             $('select[name=situacao]').val('A');
             _changeCampos(false);
         }
 
         function _validaForm() {
+            var salvar = window.document.getElementById('btnSalvar');
             if (window.document.getElementById('mensalista').value.trim() == '') {
-                alert('Informe se a pessoa é um mensalista!');
-                window.document.getElementById('mensalista').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else {
                 if (window.document.getElementById('mensalista').value.trim() == 'S') {
                     if (window.document.getElementById('idPessoas').value.trim() == '') {
-                        alert('Informe a pessoa!');
-                        window.document.getElementById('idPessoas').focus();
-                        return false;
+                        salvar.disabled = true;
+                        return;
                     }
                 } else {
                     if (window.document.getElementById('responsavel').value.trim() == '') {
-                        alert('Informe o responsável!');
-                        window.document.getElementById('responsavel').focus();
-                        return false;
+                        salvar.disabled = true;
+                        return;
                     }
                 }
             }
             if (window.document.getElementById('placa').value.trim() == '') {
-                alert('Informe a placa!');
-                window.document.getElementById('placa').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             }
-            return true;
+            salvar.disabled = false;
         }
 
         function _salvar() {
-            if (_validaForm()) {
-                $.post('../../api/controles', $('form[rule=cadastro]').serialize(), function () {
-                    $('#myModal').modal('hide');
-                    _carregar();
-                });
-            }
+            $.post('../../api/controles', $('form[rule=cadastro]').serialize(), function () {
+                $('#myModal').modal('hide');
+                _carregar();
+            });
         }
 
         function _remover(id) {
@@ -103,6 +99,7 @@
             $.getJSON('../../api/controles', 'id=' + id, function (data) {
                 _preencheForm(data);
                 _changeCampos(true);
+                window.document.getElementById('btnSalvar').disabled = true;
             })
         }
 
@@ -197,7 +194,6 @@
             var modelo = window.document.getElementById('modelo');
             var cor = window.document.getElementById('cor');
             var responsavel = window.document.getElementById('responsavel');
-            var salvar = window.document.getElementById('btnSalvar');
             pessoa.disabled = habilita;
             mensalista.disabled = habilita;
             placa.disabled = habilita;
@@ -205,7 +201,6 @@
             modelo.disabled = habilita;
             cor.disabled = habilita;
             responsavel.disabled = habilita;
-            salvar.disabled = habilita;
         }
 
         return {
@@ -215,7 +210,8 @@
             remove: _remover,
             encerrar: _encerrar,
             pendente: _pendente,
-            pesquisar: _pesquisar
+            pesquisar: _pesquisar,
+            validaForm: _validaForm
         }
     }
 

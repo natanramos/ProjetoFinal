@@ -123,18 +123,18 @@
                 <input type="hidden" id="id" name="id">
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-md-1 control-label" for="nome">Nome</label>
+                    <label class="col-md-1 control-label" for="nome">Nome<span style="color: red;">*</span></label>
                     <div class="col-md-11">
-                      <input id="nome" name="nome" type="text" maxlength="200" class="form-control" />
+                      <input id="nome" name="nome" type="text" maxlength="200" class="form-control" required="true" onchange="ctrl.validaForm()"/>
                     </div>
                   </div>
                 </div>
 
                 <div class="row" style="margin-bottom: 15px;">
                   <div class="form-group">
-                    <label class="col-md-3 control-label" style="text-align: right;" for="tipoPessoa">Tipo</label>
+                    <label class="col-md-3 control-label" style="text-align: right;" for="tipoPessoa">Tipo<span style="color: red;">*</span></label>
                     <div class="col-md-2">
-                      <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control" onchange="ctrl.changeTipoPessoa()">
+                      <select id="tipoPessoa" name="tipoPessoa" form="form" class="form-control" required="true" onchange="ctrl.changeTipoPessoa(), ctrl.validaForm()">
                         <option value=""></option>
                         <option value="F">Física</option>
                         <option value="J">Jurídica</option>
@@ -142,9 +142,9 @@
                     </div>
                     <div class="col-md-1">
                     </div>
-                    <label class="col-md-2 control-label" style="text-align: right;" for="documento">CPF/CNPJ</label>
+                    <label class="col-md-2 control-label" style="text-align: right;" for="documento">CPF/CNPJ<span style="color: red;">*</span></label>
                     <div class="col-md-3">
-                      <input id="documento" name="documento" type="text" class="form-control" required="true" disabled>
+                      <input id="documento" name="documento" type="text" class="form-control" required="true" disabled onchange="ctrl.validaForm()"/>
                     </div>
                   </div>
                 </div>
@@ -153,11 +153,11 @@
                   <div class="form-group">
                     <label class="col-md-3 control-label" style="text-align: right;" for="dataNascimento">Data de nascimento</label>
                     <div class="col-md-3">
-                      <input id="dataNascimento" name="dataNascimento" type="date" class="form-control" required="true" disabled>
+                      <input id="dataNascimento" name="dataNascimento" type="date" class="form-control" disabled>
                     </div>
-                    <label class="col-md-2 control-label" style="text-align: right;" for="telefone">Telefone</label>
+                    <label class="col-md-2 control-label" style="text-align: right;" for="telefone">Telefone<span style="color: red;">*</span></label>
                     <div class="col-md-3">
-                      <input id="telefone" name="telefone" type="text" class="form-control" required="true">
+                      <input id="telefone" name="telefone" type="text" class="form-control" required="true" onchange="ctrl.validaForm()"/>
                     </div>
                   </div>
                 </div>
@@ -204,7 +204,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="btnSalvar" onclick="ctrl.save()">Salvar</button>
+              <button type="button" class="btn btn-primary" id="btnSalvar" onclick="ctrl.save()" disabled>Salvar</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
           </div>

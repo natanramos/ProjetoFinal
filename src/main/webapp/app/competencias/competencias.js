@@ -33,37 +33,33 @@
         }
 
         function _adicionar() {
+            window.document.getElementById('btnSalvar').disabled = true;
             _preencheForm(new Competencias());
         }
 
         function _validaForm() {
+            var salvar = window.document.getElementById('btnSalvar');
             if (window.document.getElementById('descricao').value.trim() == '') {
-                alert('Informe a descrição!');
-                window.document.getElementById('descricao').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('dataInicial').value.trim() == '') {
-                alert('Informe a data de início!');
-                window.document.getElementById('dataInicial').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('dataFinal').value.trim() == '') {
-                alert('Informe a data de término!');
-                window.document.getElementById('dataFinal').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             } else if (window.document.getElementById('dataVencimento').value.trim() == '') {
-                alert('Informe a data de vencimento!');
-                window.document.getElementById('dataVencimento').focus();
-                return false;
+                salvar.disabled = true;
+                return;
             }
-            return true;
+            salvar.disabled = false;
         }
 
         function _salvar() {
-            if (_validaForm()) {
-                $.post('../../api/competencias', $('form[rule=cadastro]').serialize(), function () {
-                    $('#myModal').modal('hide');
-                    _carregar();
-                });
-            }
+            $.post('../../api/competencias', $('form[rule=cadastro]').serialize(), function () {
+                $('#myModal').modal('hide');
+                _carregar();
+            });
         }
 
         function _remover(id) {
@@ -75,6 +71,7 @@
         function _editar(id) {
             $.getJSON('../../api/competencias', 'id=' + id, function (data) {
                 _preencheForm(data);
+                window.document.getElementById('btnSalvar').disabled = false;
             })
         }
 
@@ -102,7 +99,8 @@
             add: _adicionar,
             edit: _editar,
             save: _salvar,
-            remove: _remover
+            remove: _remover,
+            validaForm: _validaForm
         }
     }
 

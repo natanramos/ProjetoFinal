@@ -107,44 +107,44 @@
                   <input type="hidden" id="id" name="id">
                   <!-- Nome -->
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="nome">Nome</label>
+                    <label class="col-md-3 control-label" for="nome">Nome<span style="color: red;">*</span></label>
                     <div class="col-md-7">
-                      <input id="nome" name="nome" type="text" maxlength="100" class="form-control input-md" required="true">
+                      <input id="nome" name="nome" type="text" maxlength="100" class="form-control input-md" required="true" onchange="ctrl.validaForm()"/>
                     </div>
                   </div>
                   <!-- Email -->
                   <div class="form-group">
                     <label class="col-md-3 control-label" for="email">Email</label>
                     <div class="col-md-7">
-                      <input id="email" name="email" type="text" maxlength="100" class="form-control input-md" required="true">
+                      <input id="email" name="email" type="text" maxlength="100" class="form-control input-md">
                     </div>
                   </div>
                   <!-- Login -->
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="login">Login</label>
+                    <label class="col-md-3 control-label" for="login">Login<span style="color: red;">*</span></label>
                     <div class="col-md-5">
-                      <input id="login" name="login" type="text" maxlength="50" class="form-control input-md" required="true">
+                      <input id="login" name="login" type="text" maxlength="50" class="form-control input-md" required="true" onchange="ctrl.validaForm()"/>
                     </div>
                   </div>
                   <!-- Senha -->
                   <div class="form-group">
-                    <label class="col-md-3 control-label" for="senha">Senha</label>
+                    <label class="col-md-3 control-label" for="senha">Senha<span style="color: red;">*</span></label>
                     <div class="col-md-3">
-                      <input id="senha" name="senha" type="password" maxlength="20" class="form-control input-md" required="true">
+                      <input id="senha" name="senha" type="password" maxlength="20" class="form-control input-md" required="true" onchange="ctrl.validaForm()"/>
                     </div>
                   </div>
                   <!-- Data de cadastro -->
                   <div class="form-group">
                     <label class="col-md-3 control-label" for="dataCadastro">Data de cadastro</label>
                     <div class="col-md-3">
-                      <input id="dataCadastro" name="dataCadastro" type="date" class="form-control input-md" required="true" disabled>
+                      <input id="dataCadastro" name="dataCadastro" type="date" class="form-control input-md" disabled>
                     </div>
                   </div>
                 </fieldset>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" id="btnSalvar" onclick="ctrl.save()">Salvar</button>
+              <button type="button" class="btn btn-primary" id="btnSalvar" onclick="ctrl.save()" disabled>Salvar</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
             </div>
           </div>

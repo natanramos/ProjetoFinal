@@ -11,7 +11,7 @@ primary key(id)
 
 create sequence public.seq_usuarios;
 
-Insert Into public.usuarios (id,nome,data_cadastro,email,login,senha) Values((select nextval('seq_usuarios')),'Administrador',now(),'admin@gmail.com','admin','admin');
+Insert Into public.usuarios (id,nome,data_cadastro,email,login,senha) Values((select nextval('seq_usuarios')),'Administrador',now(),'admin@gmail.com','admin',encode('admin','base64'));
 
 create table public.estados(
 id bigint not null,
